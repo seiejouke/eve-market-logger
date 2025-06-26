@@ -12,7 +12,8 @@ print(f"[DEBUG] Current working directory: {os.getcwd()}")
 FORGE_REGION_ID   = 10000002         # The Forge region
 BATCH_SIZE        = 1000             # Number of type_ids per CSV batch
 SLEEP_BETWEEN     = 1.0              # Minimum seconds between API requests
-MAX_RETRIES       = 5                # Max retries on errors/rate limits
+REQUEST_TIMEOUT   = 2                # Seconds before timing out and skipping
+MAX_RETRIES       = 1                # Max retries on rate limits
 BACKOFF_FACTOR    = 2                # Exponential backoff multiplier
 OUTPUT_DIR        = "output/market_history"
 INPUT_CSV         = "output/all_item_type_ids.csv"  # CSV with 'type_id' column
@@ -57,13 +58,17 @@ for batch_idx in range(total_batches):
         retries = 0
         while True:
             try:
-                # Correctly pass type_id as query parameter
+                # Request with timeout to skip slow items
                 resp = requests.get(
                     base_url,
                     params={"type_id": type_id},
-                    headers=headers
+                    headers=headers,
+                    timeout=REQUEST_TIMEOUT
                 )
                 status = resp.status_code
+                if status == 400:
+                    print(f"  [Warn] type_id {type_id}: 400 Bad Request (invalid or untradable)")
+                    break
                 if status == 404:
                     print(f"  [Warn] type_id {type_id}: 404 Not Found (no history)")
                     break
@@ -77,14 +82,16 @@ for batch_idx in range(total_batches):
                         break
                     continue
                 resp.raise_for_status()
-                # Parse JSON history data
                 history = resp.json()
                 for entry in history:
                     entry['type_id'] = type_id
                     results.append(entry)
                 break
 
-            except Exception as e:
+            except requests.exceptions.Timeout:
+                print(f"  [Timeout] type_id {type_id}: request timed out after {REQUEST_TIMEOUT}s, skipping")
+                break
+            except requests.RequestException as e:
                 retries += 1
                 wait = BACKOFF_FACTOR ** (retries - 1)
                 print(f"  [Error] type_id {type_id}: {e} (retry {retries}/{MAX_RETRIES}), sleeping {wait}s")
