@@ -1,0 +1,4 @@
+[core]
+    remote = localremote
+['remote "localremote"']
+    url = C:\Users\Jouke\Documents\dvc-storage
