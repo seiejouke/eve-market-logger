@@ -1,27 +1,41 @@
 import pandas as pd
-import psycopg2
+import os
 
-# Step 1: Load your CSV
-df = pd.read_csv("output/market_data.csv", parse_dates=["date"])
+# --- Config ---
+INPUT_CSV = "output/market_data_with_names_merged.csv"
+OUTPUT_CSV = "output/market_data_with_names_merged.csv"
 
-# Step 2: Connect to your PostgreSQL database
-conn = psycopg2.connect(
-    dbname="eve_data",
-    user="postgres",
-    password="109009885",  # Replace if needed
-    host="localhost",
-    port="5432"
-)
+# --- PostgreSQL connection string ---
+from sqlalchemy import create_engine
 
-# Step 3: Load type_id → type_name mapping from DB
-type_map = pd.read_sql("SELECT type_id, type_name FROM inv_types;", conn)
+DB_URI = "postgresql+psycopg2://postgres:109009885@localhost:5432/eve_data"
 
-# Step 4: Merge item names into your CSV data
-df = df.merge(type_map, on="type_id", how="left")
+# --- Ensure output directory exists ---
+os.makedirs("output", exist_ok=True)
 
-# Step 5: Save updated CSV (optional)
-df.to_csv("output/market_data_with_names.csv", index=False)
+# --- Load your market data (auto-detect date col if present) ---
+df = pd.read_csv(INPUT_CSV, parse_dates=["date"] if "date" in pd.read_csv(INPUT_CSV, nrows=1).columns else None)
 
-conn.close()
+# --- Connect and get mapping ---
+engine = create_engine(DB_URI)
+type_map = pd.read_sql("SELECT type_id, type_name FROM inv_types;", engine)
 
-print("✅ market_data_with_names.csv created with item names.")
+# --- Merge type names ---
+if 'type_name' in df.columns:
+    df = df.merge(type_map, on="type_id", how="left", suffixes=('', '_map'))
+    if 'type_name_map' in df.columns:
+        df['type_name'] = df['type_name'].combine_first(df['type_name_map'])
+        df.drop(columns=['type_name_map'], inplace=True)
+else:
+    df = df.merge(type_map, on="type_id", how="left")
+
+# --- Check for missing names ---
+missing = df['type_name'].isna().sum()
+print(f"Rows still missing item names: {missing}")
+if missing > 0:
+    print("Example missing rows:")
+    print(df[df['type_name'].isna()].head())
+
+# --- Save final output ---
+df.to_csv(OUTPUT_CSV, index=False)
+print(f"✅ {OUTPUT_CSV} created with item names.")
