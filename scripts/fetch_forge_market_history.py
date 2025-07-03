@@ -1,109 +1,92 @@
-import os
-import time
-import math
-import requests
+#!/usr/bin/env python3
+import asyncio
+import aiohttp
 import pandas as pd
+import time
+import os
 from datetime import datetime
 
-# === DEBUG: Print current working directory ===
-print(f"[DEBUG] Current working directory: {os.getcwd()}")
+# ─── Configuration ─────────────────────────────────────────────
+REGION_ID        = 10000002  # The Forge
+MAX_CONCURRENT   = 5
+DELAY            = 1.2       # seconds between requests per worker
+HISTORY_DAYS     = 2         # Fetch last 2 days for update/backfill
+INPUT_TYPE_IDS   = 'output/all_item_type_ids.csv'
+OUTPUT_DIR       = 'output/market_history'
+CANONICAL_CSV    = 'output/market_data_with_names_merged.csv'
 
-# === CONFIGURATION ===
-FORGE_REGION_ID   = 10000002         # The Forge region
-BATCH_SIZE        = 1000             # Number of type_ids per CSV batch
-SLEEP_BETWEEN     = 1.0              # Minimum seconds between API requests
-REQUEST_TIMEOUT   = 2                # Seconds before timing out and skipping
-MAX_RETRIES       = 1                # Max retries on rate limits
-BACKOFF_FACTOR    = 2                # Exponential backoff multiplier
-OUTPUT_DIR        = "output/market_history"
-INPUT_CSV         = "output/all_item_type_ids.csv"  # CSV with 'type_id' column
-
-# Ensure output directory exists
 os.makedirs(OUTPUT_DIR, exist_ok=True)
-abs_output_dir = os.path.abspath(OUTPUT_DIR)
-print(f"[DEBUG] Output directory: {abs_output_dir}")
+os.makedirs('output', exist_ok=True)  # Ensure output/ always exists
 
-# === LOAD ITEM TYPE IDs ===
-print(f"[{datetime.now()}] Loading type IDs from {INPUT_CSV}")
-df_ids = pd.read_csv(INPUT_CSV)
-all_type_ids = df_ids['type_id'].tolist()
-print(f"[{datetime.now()}] Loaded {len(all_type_ids)} type IDs")
+# ─── Async Fetcher ─────────────────────────────────────────────
+async def fetch_history(session, semaphore, type_id):
+    url     = f"https://esi.evetech.net/latest/markets/{REGION_ID}/history/?type_id={type_id}"
+    headers = {'User-Agent': 'eve-market-history-pipeline'}
+    async with semaphore:
+        await asyncio.sleep(DELAY)  # Space out requests to avoid bursts
+        async with session.get(url, headers=headers) as resp:
+            if resp.status != 200:
+                print(f"[{resp.status}] Error for type_id {type_id}")
+                return []
+            data = await resp.json()
+            recent = data[-HISTORY_DAYS:]
+            return [
+                {
+                    'type_id':  type_id,
+                    'date':     d['date'],
+                    'volume':   d['volume'],
+                    'average':  d['average'],
+                    'highest':  d['highest'],
+                    'lowest':   d['lowest'],
+                }
+                for d in recent
+            ]
 
-# === ESI Endpoint Configuration ===
-base_url = f"https://esi.evetech.net/latest/markets/{FORGE_REGION_ID}/history/"
-headers  = {
-    "Accept": "application/json",
-    "User-Agent": "eve-market-logger by joukeseinstra"
-}
+async def backfill(type_ids):
+    sem = asyncio.Semaphore(MAX_CONCURRENT)
+    async with aiohttp.ClientSession() as session:
+        tasks = [fetch_history(session, sem, tid) for tid in type_ids]
+        chunks = await asyncio.gather(*tasks)
+    # flatten list of lists
+    records = [r for chunk in chunks for r in chunk]
+    return pd.DataFrame(records)
 
-# === HELPER: Save Batch to CSV ===
-def save_batch(batch_no, data):
-    df = pd.DataFrame(data)
-    filename = os.path.join(abs_output_dir, f"market_history_batch_{batch_no}.csv")
-    df.to_csv(filename, index=False)
-    print(f"[{datetime.now()}] Saved batch {batch_no} with {len(df)} rows to: {filename}")
-    print(f"[DEBUG] Files now in output dir: {os.listdir(abs_output_dir)}")
+# ─── Helpers ───────────────────────────────────────────────────
+def load_type_ids(path):
+    df = pd.read_csv(path)
+    return df['type_id'].astype(int).tolist()
 
-# === PROCESS IN BATCHES ===
-total_batches = math.ceil(len(all_type_ids) / BATCH_SIZE)
-print(f"[{datetime.now()}] Total batches to process: {total_batches}")
+# ─── Main ──────────────────────────────────────────────────────
+def main():
+    start = time.time()
 
-for batch_idx in range(total_batches):
-    start = batch_idx * BATCH_SIZE
-    batch_ids = all_type_ids[start:start + BATCH_SIZE]
-    results = []
-    print(f"\n[{datetime.now()}] Starting batch {batch_idx+1}/{total_batches} (type_id {batch_ids[0]}–{batch_ids[-1]})")
+    # Load item IDs
+    type_ids = load_type_ids(INPUT_TYPE_IDS)
+    print(f"→ Loaded {len(type_ids)} type IDs from {INPUT_TYPE_IDS}")
 
-    for type_id in batch_ids:
-        retries = 0
-        while True:
-            try:
-                # Request with timeout to skip slow items
-                resp = requests.get(
-                    base_url,
-                    params={"type_id": type_id},
-                    headers=headers,
-                    timeout=REQUEST_TIMEOUT
-                )
-                status = resp.status_code
-                if status == 400:
-                    print(f"  [Warn] type_id {type_id}: 400 Bad Request (invalid or untradable)")
-                    break
-                if status == 404:
-                    print(f"  [Warn] type_id {type_id}: 404 Not Found (no history)")
-                    break
-                if status in (420, 429):
-                    retry_after = int(resp.headers.get("Retry-After", "10"))
-                    print(f"  [Rate] type_id {type_id}: {status}, sleeping {retry_after}s")
-                    time.sleep(retry_after)
-                    retries += 1
-                    if retries > MAX_RETRIES:
-                        print(f"  [Error] type_id {type_id} exceeded max retries on rate limit")
-                        break
-                    continue
-                resp.raise_for_status()
-                history = resp.json()
-                for entry in history:
-                    entry['type_id'] = type_id
-                    results.append(entry)
-                break
+    # Fetch HISTORY_DAYS days of history for all items
+    print(f"→ Fetching {HISTORY_DAYS}-day history for region {REGION_ID} with {MAX_CONCURRENT} workers…")
+    df = asyncio.run(backfill(type_ids))
 
-            except requests.exceptions.Timeout:
-                print(f"  [Timeout] type_id {type_id}: request timed out after {REQUEST_TIMEOUT}s, skipping")
-                break
-            except requests.RequestException as e:
-                retries += 1
-                wait = BACKOFF_FACTOR ** (retries - 1)
-                print(f"  [Error] type_id {type_id}: {e} (retry {retries}/{MAX_RETRIES}), sleeping {wait}s")
-                time.sleep(wait)
-                if retries >= MAX_RETRIES:
-                    print(f"  [Error] type_id {type_id} aborted after {MAX_RETRIES} retries")
-                    break
+    # Write snapshot
+    today = datetime.utcnow().strftime("%Y-%m-%d")
+    snapshot = os.path.join(OUTPUT_DIR, f"update_{today}.csv")
+    df.to_csv(snapshot, index=False)
+    print(f"→ Saved snapshot ({len(df)} rows) to {snapshot}")
 
-        # Enforce minimum pacing
-        time.sleep(SLEEP_BETWEEN)
+    # --- Merge with canonical backlog ---
+    if os.path.exists(CANONICAL_CSV):
+        df_canon = pd.read_csv(CANONICAL_CSV, parse_dates=['date'])
+        combined = pd.concat([df_canon, df], ignore_index=True)
+        combined.drop_duplicates(subset=['type_id', 'date'], keep='last', inplace=True)
+        combined.sort_values(by=['type_id', 'date'], inplace=True)
+    else:
+        combined = df.copy()
 
-    # Save this batch, even if results is empty
-    save_batch(batch_idx+1, results)
+    combined.to_csv(CANONICAL_CSV, index=False)
+    print(f"✅ Updated backlog saved as: {CANONICAL_CSV}")
 
-print(f"[{datetime.now()}] ✅ Completed all {total_batches} batches.")
+    print(f"✅ Done in {time.time() - start:.2f}s")
+
+if __name__ == "__main__":
+    main()
