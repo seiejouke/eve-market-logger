@@ -12,7 +12,7 @@ MAX_CONCURRENT   = 5
 DELAY            = 1.2       # seconds between requests per worker
 HISTORY_DAYS     = 2         # Fetch last 2 days for update/backfill
 INPUT_TYPE_IDS   = 'output/all_item_type_ids.csv'
-OUTPUT_DIR       = 'output/market_history'
+OUTPUT_DIR       = 'output'
 CANONICAL_CSV    = 'output/market_data_with_names_merged.csv'
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)

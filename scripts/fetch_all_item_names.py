@@ -1,3 +1,9 @@
+#Update DB for potential missing id_type, item names, run to be on the safe side!
+#Update DB for potential missing id_type, item names, run to be on the safe side!!
+#Update DB for potential missing id_type, item names, run to be on the safe side!!!
+#Update DB for potential missing id_type, item names, run to be on the safe side!!!!
+#Update DB for potential missing id_type, item names, run to be on the safe side!!!!!
+
 import requests
 import time
 import psycopg2
