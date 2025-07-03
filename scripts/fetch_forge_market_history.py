@@ -1,3 +1,5 @@
+#Data builder, keeping up with the market- non-auto, change as needed manually
+
 #!/usr/bin/env python3
 import asyncio
 import aiohttp
@@ -10,8 +12,8 @@ from datetime import datetime
 REGION_ID        = 10000002  # The Forge
 MAX_CONCURRENT   = 5
 DELAY            = 1.2       # seconds between requests per worker
-HISTORY_DAYS     = 2         # Fetch last 2 days for update/backfill
-INPUT_TYPE_IDS   = 'output/all_item_type_ids.csv'
+HISTORY_DAYS     = 5         # Fetch last x days for update/backfill
+INPUT_TYPE_IDS   = 'output/inv_types.csv'
 OUTPUT_DIR       = 'output'
 CANONICAL_CSV    = 'output/market_data_with_names_merged.csv'
 

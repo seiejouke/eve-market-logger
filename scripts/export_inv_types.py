@@ -1,4 +1,4 @@
-#The csv equivalant of your DB! 
+#The .csv equivalant of your DB update! Run this after "fetch_all_item_names.py"!
 
 import pandas as pd
 from sqlalchemy import create_engine
