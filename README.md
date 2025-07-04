@@ -18,24 +18,29 @@ This project simulates the operations of a solo trader managing a 1 billion ISK 
 - pandas, psycopg2, matplotlib  
 - Jupyter Notebooks  
 - EVE Swagger Interface (ESI API)  
-- VS Code on Windows 11 with PowerShell and WSL2  
+- VS Code on Windows 11 with PowerShell
 
 
 ## Data Workflow
 
 1. Use Python scripts to query the ESI API  
-2. Insert market orders into a PostgreSQL table  
+2. Insert market orders into a Postgres and CSV for ease of method
 3. Analyze with Jupyter notebooks:  
    - Liquidity  
    - Profit margins  
    - ISK velocity  
    - Inventory aging  
-   - Capital allocation  
+   - Capital allocation
+
+ ## Automate Market Data
+
+ 1. Retrieve Last 24 hours
+ 2. Sanitize and Merge
+ 3. Update types    
 
 ## Next Steps
 
-- Define SQL schema for market_orders  
-- Automate logging via cron (WSL)  
+- Interactive widget analysis notebook
 - Create summary dashboards and reports  
 - Add error logging and runtime validation  
 

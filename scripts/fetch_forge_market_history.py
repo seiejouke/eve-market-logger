@@ -12,7 +12,7 @@ from datetime import datetime
 REGION_ID        = 10000002  # The Forge
 MAX_CONCURRENT   = 5
 DELAY            = 1.2       # seconds between requests per worker
-HISTORY_DAYS     = 5         # Fetch last x days for update/backfill
+HISTORY_DAYS     = 1         # Fetch last x days for update/backfill
 INPUT_TYPE_IDS   = 'output/inv_types.csv'
 OUTPUT_DIR       = 'output'
 CANONICAL_CSV    = 'output/market_data_with_names_merged.csv'
@@ -86,9 +86,9 @@ def main():
         combined = df.copy()
 
     combined.to_csv(CANONICAL_CSV, index=False)
-    print(f"✅ Updated backlog saved as: {CANONICAL_CSV}")
+    print(f"Updated backlog saved as: {CANONICAL_CSV}")
 
-    print(f"✅ Done in {time.time() - start:.2f}s")
+    print(f"Done in {time.time() - start:.2f}s")
 
 if __name__ == "__main__":
     main()
