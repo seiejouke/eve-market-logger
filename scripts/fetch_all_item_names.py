@@ -85,5 +85,5 @@ for i in range(0, len(all_type_ids), batch_size):
 
 cur.close()
 conn.close()
-print("✅ Done loading all item names.")
+print("Done loading all item names.")
 # ---- END OF SCRIPT ----

@@ -1,12 +1,10 @@
-#Data builder, keeping up with the market- non-auto, change as needed manually
-
 #!/usr/bin/env python3
 import asyncio
 import aiohttp
 import pandas as pd
 import time
 import os
-from datetime import datetime
+from datetime import datetime, timezone  # <-- Fixed import
 
 # ─── Configuration ─────────────────────────────────────────────
 REGION_ID        = 10000002  # The Forge
@@ -71,7 +69,7 @@ def main():
     df = asyncio.run(backfill(type_ids))
 
     # Write snapshot
-    today = datetime.utcnow().strftime("%Y-%m-%d")
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")  # <-- Fixed line
     snapshot = os.path.join(OUTPUT_DIR, f"update_{today}.csv")
     df.to_csv(snapshot, index=False)
     print(f"→ Saved snapshot ({len(df)} rows) to {snapshot}")
