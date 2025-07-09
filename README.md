@@ -1,3 +1,6 @@
+![Description of screenshot](images\Market_Overview1.png)
+
+
 # EVE Market Logger
 
 EVE Market Logger is a data analysis project focused on station trading at Jita 4-4 in EVE Online. It uses the EVE Swagger Interface (ESI) API to fetch market data, stores it in a PostgreSQL database, and analyzes trade performance using Python and Jupyter.
