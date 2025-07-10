@@ -1,7 +1,9 @@
 ![Description of screenshot](images/Market_Overview1.png)
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/seiejouke/eve-market-logger/main.yml?branch=main)](https://github.com/seiejouke/eve-market-logger/actions)
-[![License](https://img.shields.io/github/license/seiejouke/eve-market-logger)](./LICENSE)
+
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 [![Python Version](https://img.shields.io/badge/python-3.12-blue)](https://www.python.org/downloads/release/python-3120/)
 
 
