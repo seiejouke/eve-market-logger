@@ -1,17 +1,21 @@
 ![Description of screenshot](images/Market_Overview1.png)
 
+[![Build Status](https://img.shields.io/github/actions/workflow/status/seiejouke/eve-market-logger/main.yml?branch=main)](https://github.com/seiejouke/eve-market-logger/actions)
+[![License](https://img.shields.io/github/license/seiejouke/eve-market-logger)](./LICENSE)
+[![Python Version](https://img.shields.io/badge/python-3.12-blue)](https://www.python.org/downloads/release/python-3120/)
+
+
 
 
 # EVE Market Logger
 
 EVE Market Logger is a data analysis project focused on station trading at Jita 4-4 in EVE Online. It uses the EVE Swagger Interface (ESI) API to fetch market data, stores it in a PostgreSQL database, and analyzes trade performance using Python and Jupyter.
 
-This project simulates the operations of a solo trader managing a 1 billion ISK bankroll through a personal corporation.
+This project simulates the operations of an investment trader.
 
 ## Objectives
 
-- Fetch and log market data using the ESI API
-- Store buy/sell orders in PostgreSQL
+- Automate and merge market data using the ESI API
 - Analyze trade performance, liquidity, and market behavior
 - Apply real data analyst practices in a game economy
 
@@ -37,11 +41,10 @@ This project simulates the operations of a solo trader managing a 1 billion ISK 
 
 ## Next Steps
 
--Secure sensitive data from plaintext 
 Interactive widget analysis notebook
   - Descriptive analysis
   - Trend analysis 
-- Create summary dashboards and reports  
+- Create summary dashboards and reports(BI/Streamlit)  
 - Automate backlog, item types, sanitation, and merge logic
 - Import market orders into a Postgres and CSV for ease of method
 - Scale conclusion to Postgres
