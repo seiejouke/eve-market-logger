@@ -10,7 +10,7 @@ from datetime import datetime, timezone  # <-- Fixed import
 REGION_ID        = 10000002  # The Forge
 MAX_CONCURRENT   = 5
 DELAY            = 1.2       # seconds between requests per worker
-HISTORY_DAYS     = 1         # Fetch last x days for update/backfill
+HISTORY_DAYS     = 7         # Fetch last x days for update/backfill
 INPUT_TYPE_IDS   = 'output/inv_types.csv'
 OUTPUT_DIR       = 'output'
 CANONICAL_CSV    = 'output/market_data_with_names_merged.csv'
