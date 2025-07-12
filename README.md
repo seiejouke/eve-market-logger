@@ -27,7 +27,7 @@ This project simulates the operations of an investment trader.
 
 - Python 3.12  
 - PostgreSQL 17.5  
-- pandas, psycopg2, matplotlib  
+- pandas, psycopg2, matplotlib, scikit-learn  
 - Jupyter Notebooks  
 - EVE Swagger Interface (ESI API)  
 - VS Code on Windows 11 with PowerShell
