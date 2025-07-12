@@ -45,21 +45,24 @@ This project simulates the operations of an investment trader.
 
 ## Roadmap
 
-| Feature / Task                           | Status        | Target Version  | Notes                                                |
-|------------------------------------------|---------------|-----------------|------------------------------------------------------|
-| **Data Ingestion & Storage**             |               |                 |                                                      |
-| Fetch market data via ESI API            | Complete      | v0.1            | Scripts to automate fetching implemented             |
-| Store data in PostgreSQL database        | Complete      | v0.1            | Database schema in place                             |
-| Automate data fetching (scheduling)      | In Progress   | v0.2            | Cron job or task scheduler setup planned             |
-| Improve item type and backlog management | Planned       | v0.3            | Sanitize and track more items over time              |
-| **Data Analysis & Visualization**        |               |                 |                                                      |
-| Develop Jupyter notebooks for analysis   | In Progress   | v0.2            | Analyze liquidity, profit margins, ISK velocity, etc.|
-| Add interactive widgets to notebooks     | In Progress       | v0.3            | Use `ipywidgets` for dynamic exploration             |
-| Summary dashboards/reports (Streamlit)   | Planned       | v0.4            | BI reports for trade performance and market trends   |
-| Scale analysis fully in Postgres         | Planned       | v0.4            | Transition analysis scripts from CSV to Postgres     |
-| **Data Quality & Reliability**           |               |                 |                                                      |
-| Expand error handling and logging        | Planned       | v0.3            | Robust exception handling for API and DB ops         |
-| Document all scripts and data flows      | Planned       | v0.3            | Improve onboarding and contributor experience        |
+| **Feature / Task**                                      | **Status**     | **Target Version** | **Notes**                                                                |
+|---------------------------------------------------------|----------------|--------------------|--------------------------------------------------------------------------|
+| **DATA INGESTION & STORAGE**                            |                |                    |                                                                          |
+| Fetch market data via ESI API                           | Complete       | v0.1               | Scripts to automate fetching implemented                                 |
+| Store data in PostgreSQL database                       | Complete       | v0.1               | Database schema in place                                                 |
+| Automate data fetching (scheduling)                     | In Progress    | v0.2               | Cron job or task scheduler setup planned                                 |
+| Improve item type and backlog management                | Planned        | v0.3               | Sanitize and track more items over time                                  |
+| **[NEW] Real-time data capture via image-to-text (OCR)**| Planned        | v0.5               | Capture & parse market images for high-priority items; supplement ESI lag|
+|                                                         |                |                    |                                                                          |
+| **DATA ANALYSIS & VISUALIZATION**                       |                |                    |                                                                          |
+| Develop Jupyter notebooks for analysis                  | In Progress    | v0.2               | Analyze liquidity, profit margins, ISK velocity, etc.                    |
+| Add interactive widgets to notebooks                    | In Progress    | v0.3               | Use `ipywidgets` for dynamic exploration                                 |
+| Summary dashboards/reports (Streamlit)                  | Planned        | v0.4               | BI reports for trade performance and market trends                       |
+| Scale analysis fully in Postgres                        | Planned        | v0.4               | Transition analysis scripts from CSV to Postgres                         |
+|                                                         |                |                    |                                                                          |
+| **DATA QUALITY & RELIABILITY**                          |                |                    |                                                                          |
+| Expand error handling and logging                       | Planned        | v0.3               | Robust exception handling for API and DB ops                             |
+| Document all scripts and data flows                     | Planned        | v0.3               | Improve onboarding and contributor experience                            |
 
 
 ## References
