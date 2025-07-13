@@ -2,7 +2,7 @@
 
 import pandas as pd
 
-market_df = pd.read_csv('output/market_data_with_names_merged.csv')
+market_df = pd.read_csv('output/update_2025-07-13.csv')
 
 type_map = pd.read_csv('output/inv_types.csv')
 
@@ -16,4 +16,4 @@ print(type_map.columns)
 merged_df = market_df.merge(type_map[['type_id', 'type_name']], on='type_id', how='left')
 
 
-merged_df.to_csv('output/market_data_with_names_merged.csv', index=False)
+merged_df.to_csv('output/update_2025-07-13.csv', index=False)

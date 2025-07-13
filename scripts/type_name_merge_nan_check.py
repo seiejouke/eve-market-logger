@@ -1,6 +1,6 @@
 import pandas as pd
 
-merged_df = pd.read_csv('output/market_data_with_names_merged.csv')
+merged_df = pd.read_csv('output/update_2025-07-13.csv')
 
 missing_names = merged_df[merged_df['type_name'].isnull()]
 

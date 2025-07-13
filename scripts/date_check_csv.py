@@ -8,7 +8,7 @@ import pandas as pd
 #So, on July 12, the most recent history is almost always July 10 (sometimes July 11 if you’re lucky, but July 12 will not appear until tomorrow or the day after).
 
 # Load your CSV (adjust the file path if needed)
-df = pd.read_csv(r'output\update_2025-07-12.csv')
+df = pd.read_csv(r'output/update_2025-07-13.csv')
 
 # Robustly parse mixed date formats
 df['date'] = pd.to_datetime(df['date'], infer_datetime_format=True, errors='coerce')
