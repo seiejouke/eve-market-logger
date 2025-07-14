@@ -1,0 +1,30 @@
+EMA seems to work better in volatile items.
+
+Running MA, EMA, and Rolling Volatility combintions over 3 different categories of items. Ships, Ice Products, and Minerals. 
+This to understand how tools prefer which market conditions.
+
+Following analysis lacks trade volume for decent confidence. Following-up with new parameters across the data on higher trade volume.
+
+Top 20 strategies by ROI across all items and windows:
+    item strategy  ma_window  vol_window  profit       roi  trades
+Mexallon  EMA+Vol         52          53   66.02 30.047333       3
+Mexallon  EMA+Vol         51          53   66.02 30.047333       3
+Mexallon  EMA+Vol         54          53   65.35 29.742399       3
+Mexallon  EMA+Vol         57          53   65.35 29.742399       3
+Mexallon  EMA+Vol         59          53   65.35 29.742399       3
+Mexallon  EMA+Vol         56          53   65.35 29.742399       3
+Mexallon  EMA+Vol         60          53   65.35 29.742399       3
+Mexallon  EMA+Vol         58          53   65.35 29.742399       3
+Mexallon  EMA+Vol         55          53   65.35 29.742399       3
+Mexallon  EMA+Vol         53          53   65.35 29.742399       3
+Mexallon      EMA         52          53   59.82 27.225560       3
+Mexallon      EMA         52          43   59.82 27.225560       3
+Mexallon      EMA         51           3   59.82 27.225560       3
+Mexallon      EMA         52          33   59.82 27.225560       3
+Mexallon      EMA         52          23   59.82 27.225560       3
+Mexallon      EMA         52          13   59.82 27.225560       3
+Mexallon      EMA         51          23   59.82 27.225560       3
+Mexallon      EMA         51          33   59.82 27.225560       3
+Mexallon      EMA         51          53   59.82 27.225560       3
+Mexallon      EMA         52           3   59.82 27.225560       3
+

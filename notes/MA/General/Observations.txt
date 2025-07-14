@@ -1,0 +1,610 @@
+Running the whole "gamut" of indicators to sweep the grid for negatives.
+
+Sweeping with;
+Moving Average(MA)
+Exponential Average(EMA)
+Weighted Moving Average(WMA)
+Rolling Volatility(RV)
+Volume Weighted Average Percentile(VWAP)
+Moving Average Convergence Divergence(MACD)
+Relative Strength Index(RSI)
+Stochastic Oscillator
+Rate of Change(RoC)
+Z-score
+Bollinger Bands
+Percentile Ranking
+
+Next Step; Identifying overlapping noise; de-pairing correlated indicators
+
+Average ROI by strategy across ALL items and parameter sets:
+
+strategy
+BB         3.094170
+RSI        1.828288
+BB+Vol    -1.434427
+WMA+Vol   -3.895435
+MA+Vol    -3.902294
+EMA+Vol   -4.034884
+WMA       -5.133203
+MA        -5.275721
+EMA       -5.339238
+MACD      -6.425882
+Name: roi, dtype: float64
+
+============================================================
+
+Best parameter set for each (item, strategy):
+
+           item strategy  ma_window  vol_window        roi        profit  \
+67529   Abaddon   BB+Vol          6          23  16.967456  5.735000e+07   
+68343   Abaddon      RSI         20           3   6.846621  1.040428e+08   
+69845   Abaddon       BB         45           3   3.359565  1.509976e+08   
+70207   Abaddon  EMA+Vol         51           3   0.922700  8.241365e+07   
+70746   Abaddon   MA+Vol         60           3   0.541308  4.495584e+07   
+...         ...      ...        ...         ...        ...           ...   
+151608  Zydrine  WMA+Vol         50          43   4.047504  1.762000e+03   
+151921  Zydrine      EMA         56           3   3.550821  7.200000e+02   
+151320  Zydrine       MA         46           3   3.390686  8.730000e+02   
+148684  Zydrine     MACD          2           3   1.589610  4.590000e+02   
+152162  Zydrine      WMA         60           3   1.292130  4.980000e+02   
+
+        trades  
+67529        1  
+68343        5  
+69845       15  
+70207       29  
+70746       27  
+...        ...  
+151608      21  
+151921      11  
+151320      13  
+148684      14  
+152162      19  
+
+[480 rows x 7 columns]
+
+============================================================
+
+Top 20 runs by ROI (with at least 10 trades):
+
+                              item strategy  ma_window  vol_window        roi  \
+161515  Chromodynamic Tricarboxyls       BB         38          53  24.524407   
+161435  Chromodynamic Tricarboxyls       BB         37          33  24.524407   
+161475  Chromodynamic Tricarboxyls       BB         38          13  24.524407   
+161465  Chromodynamic Tricarboxyls       BB         38           3  24.524407   
+161495  Chromodynamic Tricarboxyls       BB         38          33  24.524407   
+161505  Chromodynamic Tricarboxyls       BB         38          43  24.524407   
+161345  Chromodynamic Tricarboxyls       BB         36           3  24.524407   
+161385  Chromodynamic Tricarboxyls       BB         36          43  24.524407   
+161395  Chromodynamic Tricarboxyls       BB         36          53  24.524407   
+161485  Chromodynamic Tricarboxyls       BB         38          23  24.524407   
+161455  Chromodynamic Tricarboxyls       BB         37          53  24.524407   
+161445  Chromodynamic Tricarboxyls       BB         37          43  24.524407   
+161415  Chromodynamic Tricarboxyls       BB         37          13  24.524407   
+161405  Chromodynamic Tricarboxyls       BB         37           3  24.524407   
+161355  Chromodynamic Tricarboxyls       BB         36          13  24.524407   
+161375  Chromodynamic Tricarboxyls       BB         36          33  24.524407   
+161425  Chromodynamic Tricarboxyls       BB         37          23  24.524407   
+161365  Chromodynamic Tricarboxyls       BB         36          23  24.524407   
+161685  Chromodynamic Tricarboxyls       BB         41          43  22.754297   
+161695  Chromodynamic Tricarboxyls       BB         41          53  22.754297   
+
+          profit  trades  
+161515  88334.86      10  
+161435  88334.86      10  
+161475  88334.86      10  
+161465  88334.86      10  
+161495  88334.86      10  
+161505  88334.86      10  
+161345  88334.86      10  
+161385  88334.86      10  
+161395  88334.86      10  
+161485  88334.86      10  
+161455  88334.86      10  
+161445  88334.86      10  
+161415  88334.86      10  
+161405  88334.86      10  
+161355  88334.86      10  
+161375  88334.86      10  
+161425  88334.86      10  
+161365  88334.86      10  
+161685  84280.01      10  
+161695  84280.01      10  
+
+============================================================
+
+Average ROI by item and strategy (pivot table):
+strategy                         BB  BB+Vol     EMA  EMA+Vol      MA  MA+Vol  \
+item                                                                           
+Abaddon                      -2.224  -1.479  -3.521   -2.549  -3.816  -2.727   
+Apocalypse                   -0.452  -3.504  -5.122   -4.077  -5.256  -4.166   
+Apocalypse Navy Issue         2.960  -1.372  -4.145   -2.661  -4.283  -2.837   
+Armageddon                   -1.317  -4.301  -3.395   -2.904  -3.586  -3.006   
+Armageddon Navy Issue         0.531  -0.231  -3.562   -2.562  -3.749  -2.651   
+Barghest                      0.358  -0.727  -1.693   -1.330  -1.702  -1.354   
+Bhaalgorn                     2.176   5.668  -1.425   -0.108  -1.674  -0.144   
+Chromodynamic Tricarboxyls    8.223 -63.527 -49.764  -43.138 -49.167 -41.912   
+Dominix                      -1.499  -1.563  -2.342   -1.605  -2.426  -1.635   
+Dominix Navy Issue            1.950   8.310  -3.012   -1.338  -2.926  -1.152   
+Eleutrium                   252.439 -36.781 -54.154  -52.172 -44.945 -42.794   
+Heavy Water                  -3.597  14.884  -4.255   -1.345  -4.377  -1.230   
+Helium Isotopes               2.373   3.879   0.199    1.576   0.285   1.615   
+Hydrogen Isotopes             2.020   6.703  -3.395   -2.072  -3.353  -2.065   
+Hyperion                     -0.394   1.090  -2.426   -1.546  -2.429  -1.554   
+Isogen                       -1.159  -1.845  -2.001   -1.605  -1.990  -1.591   
+Leshak                        0.585   2.508  -1.243   -0.681  -1.384  -0.870   
+Liquid Ozone                -10.531  16.311  -6.800    0.468  -7.356  -0.164   
+Machariel                     0.761  -6.323  -2.117   -1.062  -1.421  -0.163   
+Maelstrom                    -0.921  -6.494  -4.789   -3.816  -4.904  -3.757   
+Megacyte                     -0.827  -0.448  -1.371   -0.807  -1.392  -0.724   
+Megathron                    -1.765  -2.679  -2.620   -1.451  -3.179  -2.010   
+Megathron Navy Issue          0.055  -0.379  -2.808   -2.001  -2.708  -1.849   
+Mexallon                      0.395   6.210   9.829    7.901   4.657   3.580   
+Morphite                     -0.486   8.753   0.906    1.731   0.768   1.448   
+Neo-Jadarite                -18.368 -71.303 -61.595  -57.856 -60.377 -56.795   
+Nestor                       -0.007   0.012  -1.438   -0.760  -1.358  -0.545   
+Nightmare                     0.165  -2.787  -2.502   -1.768  -2.969  -2.219   
+Nitrogen Isotopes             2.749   4.409   0.499    1.489   0.273   1.151   
+Nocxium                       0.816   1.951   0.992    2.034   0.507   1.531   
+Oxygen Isotopes               1.781   7.746  -1.872   -0.481  -1.647  -0.260   
+Praxis                        0.847  -0.585  -2.650   -1.772  -2.708  -1.859   
+Pyerite                       2.802  25.999   0.386    2.544   0.573   2.580   
+Rattlesnake                   0.303   2.618  -1.068   -0.261  -1.104  -0.263   
+Raven                        -3.176  -1.641  -2.151   -1.732  -2.368  -1.899   
+Raven Navy Issue              1.088   2.816  -1.235   -0.515  -1.081  -0.367   
+Rokh                         -3.264  -0.570  -3.887   -2.993  -3.810  -2.854   
+Scorpion                     -0.105  -2.197  -2.829   -1.973  -2.705  -1.827   
+Scorpion Navy Issue           1.126  -0.984  -3.539   -2.267  -3.583  -2.147   
+Strontium Clathrates          3.437  13.202  -4.660   -2.316  -4.580  -1.989   
+Tempest                      -0.982  -3.346  -2.119   -1.566  -2.401  -1.827   
+Tempest Fleet Issue          -0.608   1.245  -2.820   -0.931  -3.191  -1.022   
+Thunderchild                 -0.886  -4.202  -1.782   -1.265  -1.593  -0.954   
+Tritanium                    -0.418  -2.590  -1.402   -1.111  -1.275  -0.966   
+Typhoon                      -1.476  -3.182  -1.880   -1.564  -2.027  -1.739   
+Typhoon Fleet Issue           1.708   1.876  -2.813   -1.476  -2.746  -1.280   
+Vindicator                   -0.687   1.958  -1.660   -0.711  -1.813  -0.687   
+Zydrine                       1.102  11.405   0.766    2.729   1.063   2.639   
+
+strategy                      MACD     RSI     WMA  WMA+Vol  
+item                                                         
+Abaddon                     -7.139  -1.187  -3.713   -2.832  
+Apocalypse                  -6.911  -3.710  -4.900   -3.865  
+Apocalypse Navy Issue       -4.426   4.960  -3.974   -2.780  
+Armageddon                  -4.431  -1.067  -3.334   -2.836  
+Armageddon Navy Issue       -4.600  -0.847  -3.464   -2.531  
+Barghest                    -2.163   1.927  -1.606   -1.238  
+Bhaalgorn                   -2.044  10.669  -1.170    0.104  
+Chromodynamic Tricarboxyls -53.607  19.704 -48.686  -42.452  
+Dominix                     -1.779  -0.629  -2.167   -1.544  
+Dominix Navy Issue          -0.257  30.204  -2.939   -1.345  
+Eleutrium                  -56.213  -6.558 -44.295  -42.054  
+Heavy Water                 -2.403 -21.961  -4.035   -1.222  
+Helium Isotopes              0.854   5.091   0.270    1.434  
+Hydrogen Isotopes           -1.511   1.714  -3.115   -1.922  
+Hyperion                    -3.592  -6.087  -2.214   -1.447  
+Isogen                      -3.249  -1.540  -1.746   -1.385  
+Leshak                      -3.730   2.259  -1.113   -0.623  
+Liquid Ozone               -15.591   2.668  -6.908    0.664  
+Machariel                   -3.545  -0.405  -1.291   -0.196  
+Maelstrom                   -6.390  -1.566  -4.226   -3.433  
+Megacyte                    -1.477   0.602  -1.451   -1.069  
+Megathron                   -6.968  -0.425  -2.747   -1.767  
+Megathron Navy Issue        -2.856   6.030  -2.613   -1.806  
+Mexallon                     0.675   0.378   3.027    2.423  
+Morphite                    -1.800  -0.461  -0.186    0.518  
+Neo-Jadarite               -68.579   4.383 -60.242  -56.548  
+Nestor                      -1.683   0.615  -1.259   -0.692  
+Nightmare                   -3.121   0.705  -2.455   -1.784  
+Nitrogen Isotopes            1.740   5.292   0.359    1.350  
+Nocxium                     -0.999  -0.657   0.367    1.173  
+Oxygen Isotopes              1.479  13.225  -1.406   -0.428  
+Praxis                      -2.020   0.364  -2.354   -1.671  
+Pyerite                     -0.145  12.543   0.081    1.654  
+Rattlesnake                 -2.334  12.142  -0.961   -0.220  
+Raven                       -2.759   1.230  -2.059   -1.612  
+Raven Navy Issue            -0.162   3.952  -1.138   -0.512  
+Rokh                        -4.756   1.743  -3.399   -2.499  
+Scorpion                    -1.550  -0.393  -2.366   -1.468  
+Scorpion Navy Issue         -5.214   0.088  -3.381   -2.072  
+Strontium Clathrates        -6.954 -10.277  -4.407   -2.319  
+Tempest                     -3.702  -1.370  -1.803   -1.276  
+Tempest Fleet Issue         -3.044  -0.875  -2.850   -0.986  
+Thunderchild                -2.742  -1.225  -1.467   -1.001  
+Tritanium                   -0.790   0.171  -1.066   -0.882  
+Typhoon                     -2.160  -0.336  -1.939   -1.619  
+Typhoon Fleet Issue         -3.345  -2.093  -2.774   -1.509  
+Vindicator                  -2.040   3.094  -1.387   -0.484  
+Zydrine                      1.590   2.774   0.108    1.625  
+
+============================================================
+
+Average ROI by strategy across ALL items and parameter sets:
+
+strategy
+BB         3.094170
+RSI        1.828288
+BB+Vol    -1.434427
+WMA+Vol   -3.895435
+MA+Vol    -3.902294
+EMA+Vol   -4.034884
+WMA       -5.133203
+MA        -5.275721
+EMA       -5.339238
+MACD      -6.425882
+Name: roi, dtype: float64
+
+============================================================
+
+Best parameter set for each (item, strategy):
+
+           item strategy  ma_window  vol_window        roi        profit  \
+67529   Abaddon   BB+Vol          6          23  16.967456  5.735000e+07   
+68343   Abaddon      RSI         20           3   6.846621  1.040428e+08   
+69845   Abaddon       BB         45           3   3.359565  1.509976e+08   
+70207   Abaddon  EMA+Vol         51           3   0.922700  8.241365e+07   
+70746   Abaddon   MA+Vol         60           3   0.541308  4.495584e+07   
+...         ...      ...        ...         ...        ...           ...   
+151608  Zydrine  WMA+Vol         50          43   4.047504  1.762000e+03   
+151921  Zydrine      EMA         56           3   3.550821  7.200000e+02   
+151320  Zydrine       MA         46           3   3.390686  8.730000e+02   
+148684  Zydrine     MACD          2           3   1.589610  4.590000e+02   
+152162  Zydrine      WMA         60           3   1.292130  4.980000e+02   
+
+        trades  
+67529        1  
+68343        5  
+69845       15  
+70207       29  
+70746       27  
+...        ...  
+151608      21  
+151921      11  
+151320      13  
+148684      14  
+152162      19  
+
+[480 rows x 7 columns]
+
+============================================================
+
+Top 20 runs by ROI (with at least 10 trades):
+
+                              item strategy  ma_window  vol_window        roi  \
+161515  Chromodynamic Tricarboxyls       BB         38          53  24.524407   
+161435  Chromodynamic Tricarboxyls       BB         37          33  24.524407   
+161475  Chromodynamic Tricarboxyls       BB         38          13  24.524407   
+161465  Chromodynamic Tricarboxyls       BB         38           3  24.524407   
+161495  Chromodynamic Tricarboxyls       BB         38          33  24.524407   
+161505  Chromodynamic Tricarboxyls       BB         38          43  24.524407   
+161345  Chromodynamic Tricarboxyls       BB         36           3  24.524407   
+161385  Chromodynamic Tricarboxyls       BB         36          43  24.524407   
+161395  Chromodynamic Tricarboxyls       BB         36          53  24.524407   
+161485  Chromodynamic Tricarboxyls       BB         38          23  24.524407   
+161455  Chromodynamic Tricarboxyls       BB         37          53  24.524407   
+161445  Chromodynamic Tricarboxyls       BB         37          43  24.524407   
+161415  Chromodynamic Tricarboxyls       BB         37          13  24.524407   
+161405  Chromodynamic Tricarboxyls       BB         37           3  24.524407   
+161355  Chromodynamic Tricarboxyls       BB         36          13  24.524407   
+161375  Chromodynamic Tricarboxyls       BB         36          33  24.524407   
+161425  Chromodynamic Tricarboxyls       BB         37          23  24.524407   
+161365  Chromodynamic Tricarboxyls       BB         36          23  24.524407   
+161685  Chromodynamic Tricarboxyls       BB         41          43  22.754297   
+161695  Chromodynamic Tricarboxyls       BB         41          53  22.754297   
+
+          profit  trades  
+161515  88334.86      10  
+161435  88334.86      10  
+161475  88334.86      10  
+161465  88334.86      10  
+161495  88334.86      10  
+161505  88334.86      10  
+161345  88334.86      10  
+161385  88334.86      10  
+161395  88334.86      10  
+161485  88334.86      10  
+161455  88334.86      10  
+161445  88334.86      10  
+161415  88334.86      10  
+161405  88334.86      10  
+161355  88334.86      10  
+161375  88334.86      10  
+161425  88334.86      10  
+161365  88334.86      10  
+161685  84280.01      10  
+161695  84280.01      10  
+
+============================================================
+
+Average ROI by item and strategy (pivot table, all runs):
+strategy                         BB  BB+Vol     EMA  EMA+Vol      MA  MA+Vol  \
+item                                                                           
+Abaddon                      -2.224  -1.479  -3.521   -2.549  -3.816  -2.727   
+Apocalypse                   -0.452  -3.504  -5.122   -4.077  -5.256  -4.166   
+Apocalypse Navy Issue         2.960  -1.372  -4.145   -2.661  -4.283  -2.837   
+Armageddon                   -1.317  -4.301  -3.395   -2.904  -3.586  -3.006   
+Armageddon Navy Issue         0.531  -0.231  -3.562   -2.562  -3.749  -2.651   
+Barghest                      0.358  -0.727  -1.693   -1.330  -1.702  -1.354   
+Bhaalgorn                     2.176   5.668  -1.425   -0.108  -1.674  -0.144   
+Chromodynamic Tricarboxyls    8.223 -63.527 -49.764  -43.138 -49.167 -41.912   
+Dominix                      -1.499  -1.563  -2.342   -1.605  -2.426  -1.635   
+Dominix Navy Issue            1.950   8.310  -3.012   -1.338  -2.926  -1.152   
+Eleutrium                   252.439 -36.781 -54.154  -52.172 -44.945 -42.794   
+Heavy Water                  -3.597  14.884  -4.255   -1.345  -4.377  -1.230   
+Helium Isotopes               2.373   3.879   0.199    1.576   0.285   1.615   
+Hydrogen Isotopes             2.020   6.703  -3.395   -2.072  -3.353  -2.065   
+Hyperion                     -0.394   1.090  -2.426   -1.546  -2.429  -1.554   
+Isogen                       -1.159  -1.845  -2.001   -1.605  -1.990  -1.591   
+Leshak                        0.585   2.508  -1.243   -0.681  -1.384  -0.870   
+Liquid Ozone                -10.531  16.311  -6.800    0.468  -7.356  -0.164   
+Machariel                     0.761  -6.323  -2.117   -1.062  -1.421  -0.163   
+Maelstrom                    -0.921  -6.494  -4.789   -3.816  -4.904  -3.757   
+Megacyte                     -0.827  -0.448  -1.371   -0.807  -1.392  -0.724   
+Megathron                    -1.765  -2.679  -2.620   -1.451  -3.179  -2.010   
+Megathron Navy Issue          0.055  -0.379  -2.808   -2.001  -2.708  -1.849   
+Mexallon                      0.395   6.210   9.829    7.901   4.657   3.580   
+Morphite                     -0.486   8.753   0.906    1.731   0.768   1.448   
+Neo-Jadarite                -18.368 -71.303 -61.595  -57.856 -60.377 -56.795   
+Nestor                       -0.007   0.012  -1.438   -0.760  -1.358  -0.545   
+Nightmare                     0.165  -2.787  -2.502   -1.768  -2.969  -2.219   
+Nitrogen Isotopes             2.749   4.409   0.499    1.489   0.273   1.151   
+Nocxium                       0.816   1.951   0.992    2.034   0.507   1.531   
+Oxygen Isotopes               1.781   7.746  -1.872   -0.481  -1.647  -0.260   
+Praxis                        0.847  -0.585  -2.650   -1.772  -2.708  -1.859   
+Pyerite                       2.802  25.999   0.386    2.544   0.573   2.580   
+Rattlesnake                   0.303   2.618  -1.068   -0.261  -1.104  -0.263   
+Raven                        -3.176  -1.641  -2.151   -1.732  -2.368  -1.899   
+Raven Navy Issue              1.088   2.816  -1.235   -0.515  -1.081  -0.367   
+Rokh                         -3.264  -0.570  -3.887   -2.993  -3.810  -2.854   
+Scorpion                     -0.105  -2.197  -2.829   -1.973  -2.705  -1.827   
+Scorpion Navy Issue           1.126  -0.984  -3.539   -2.267  -3.583  -2.147   
+Strontium Clathrates          3.437  13.202  -4.660   -2.316  -4.580  -1.989   
+Tempest                      -0.982  -3.346  -2.119   -1.566  -2.401  -1.827   
+Tempest Fleet Issue          -0.608   1.245  -2.820   -0.931  -3.191  -1.022   
+Thunderchild                 -0.886  -4.202  -1.782   -1.265  -1.593  -0.954   
+Tritanium                    -0.418  -2.590  -1.402   -1.111  -1.275  -0.966   
+Typhoon                      -1.476  -3.182  -1.880   -1.564  -2.027  -1.739   
+Typhoon Fleet Issue           1.708   1.876  -2.813   -1.476  -2.746  -1.280   
+Vindicator                   -0.687   1.958  -1.660   -0.711  -1.813  -0.687   
+Zydrine                       1.102  11.405   0.766    2.729   1.063   2.639   
+
+strategy                      MACD     RSI     WMA  WMA+Vol  
+item                                                         
+Abaddon                     -7.139  -1.187  -3.713   -2.832  
+Apocalypse                  -6.911  -3.710  -4.900   -3.865  
+Apocalypse Navy Issue       -4.426   4.960  -3.974   -2.780  
+Armageddon                  -4.431  -1.067  -3.334   -2.836  
+Armageddon Navy Issue       -4.600  -0.847  -3.464   -2.531  
+Barghest                    -2.163   1.927  -1.606   -1.238  
+Bhaalgorn                   -2.044  10.669  -1.170    0.104  
+Chromodynamic Tricarboxyls -53.607  19.704 -48.686  -42.452  
+Dominix                     -1.779  -0.629  -2.167   -1.544  
+Dominix Navy Issue          -0.257  30.204  -2.939   -1.345  
+Eleutrium                  -56.213  -6.558 -44.295  -42.054  
+Heavy Water                 -2.403 -21.961  -4.035   -1.222  
+Helium Isotopes              0.854   5.091   0.270    1.434  
+Hydrogen Isotopes           -1.511   1.714  -3.115   -1.922  
+Hyperion                    -3.592  -6.087  -2.214   -1.447  
+Isogen                      -3.249  -1.540  -1.746   -1.385  
+Leshak                      -3.730   2.259  -1.113   -0.623  
+Liquid Ozone               -15.591   2.668  -6.908    0.664  
+Machariel                   -3.545  -0.405  -1.291   -0.196  
+Maelstrom                   -6.390  -1.566  -4.226   -3.433  
+Megacyte                    -1.477   0.602  -1.451   -1.069  
+Megathron                   -6.968  -0.425  -2.747   -1.767  
+Megathron Navy Issue        -2.856   6.030  -2.613   -1.806  
+Mexallon                     0.675   0.378   3.027    2.423  
+Morphite                    -1.800  -0.461  -0.186    0.518  
+Neo-Jadarite               -68.579   4.383 -60.242  -56.548  
+Nestor                      -1.683   0.615  -1.259   -0.692  
+Nightmare                   -3.121   0.705  -2.455   -1.784  
+Nitrogen Isotopes            1.740   5.292   0.359    1.350  
+Nocxium                     -0.999  -0.657   0.367    1.173  
+Oxygen Isotopes              1.479  13.225  -1.406   -0.428  
+Praxis                      -2.020   0.364  -2.354   -1.671  
+Pyerite                     -0.145  12.543   0.081    1.654  
+Rattlesnake                 -2.334  12.142  -0.961   -0.220  
+Raven                       -2.759   1.230  -2.059   -1.612  
+Raven Navy Issue            -0.162   3.952  -1.138   -0.512  
+Rokh                        -4.756   1.743  -3.399   -2.499  
+Scorpion                    -1.550  -0.393  -2.366   -1.468  
+Scorpion Navy Issue         -5.214   0.088  -3.381   -2.072  
+Strontium Clathrates        -6.954 -10.277  -4.407   -2.319  
+Tempest                     -3.702  -1.370  -1.803   -1.276  
+Tempest Fleet Issue         -3.044  -0.875  -2.850   -0.986  
+Thunderchild                -2.742  -1.225  -1.467   -1.001  
+Tritanium                   -0.790   0.171  -1.066   -0.882  
+Typhoon                     -2.160  -0.336  -1.939   -1.619  
+Typhoon Fleet Issue         -3.345  -2.093  -2.774   -1.509  
+Vindicator                  -2.040   3.094  -1.387   -0.484  
+Zydrine                      1.590   2.774   0.108    1.625  
+
+============================================================
+
+Pivot Table (Only showing strategy/item combos with ≥10 trades in any run):
+strategy                        BB  BB+Vol     EMA  EMA+Vol      MA  MA+Vol  \
+item                                                                          
+Abaddon                     -2.224  -1.479  -3.521   -2.549  -3.816  -2.727   
+Apocalypse                  -0.452  -3.504  -5.122   -4.077  -5.256  -4.166   
+Apocalypse Navy Issue        2.960  -1.372  -4.145   -2.661  -4.283  -2.837   
+Armageddon                  -1.317  -4.301  -3.395   -2.904  -3.586  -3.006   
+Armageddon Navy Issue        0.531     NaN  -3.562   -2.562  -3.749  -2.651   
+Barghest                     0.358  -0.727  -1.693   -1.330  -1.702  -1.354   
+Bhaalgorn                    2.176     NaN  -1.425   -0.108  -1.674  -0.144   
+Chromodynamic Tricarboxyls   8.223 -63.527 -49.764  -43.138 -49.167 -41.912   
+Dominix                     -1.499     NaN  -2.342   -1.605  -2.426  -1.635   
+Dominix Navy Issue           1.950     NaN  -3.012   -1.338  -2.926  -1.152   
+Eleutrium                      NaN     NaN -54.154  -52.172 -44.945 -42.794   
+Heavy Water                 -3.597  14.884  -4.255   -1.345  -4.377  -1.230   
+Helium Isotopes              2.373   3.879   0.199    1.576   0.285   1.615   
+Hydrogen Isotopes            2.020     NaN  -3.395   -2.072  -3.353  -2.065   
+Hyperion                    -0.394     NaN  -2.426   -1.546  -2.429  -1.554   
+Isogen                      -1.159  -1.845  -2.001   -1.605  -1.990  -1.591   
+Leshak                       0.585     NaN  -1.243   -0.681  -1.384  -0.870   
+Liquid Ozone               -10.531  16.311  -6.800    0.468  -7.356  -0.164   
+Machariel                    0.761  -6.323  -2.117   -1.062  -1.421  -0.163   
+Maelstrom                   -0.921  -6.494  -4.789   -3.816  -4.904  -3.757   
+Megacyte                    -0.827  -0.448  -1.371   -0.807  -1.392  -0.724   
+Megathron                   -1.765  -2.679  -2.620   -1.451  -3.179  -2.010   
+Megathron Navy Issue         0.055  -0.379  -2.808   -2.001  -2.708  -1.849   
+Mexallon                     0.395   6.210   9.829    7.901   4.657   3.580   
+Morphite                    -0.486   8.753   0.906    1.731   0.768   1.448   
+Neo-Jadarite                   NaN -71.303 -61.595  -57.856 -60.377 -56.795   
+Nestor                      -0.007   0.012  -1.438   -0.760  -1.358  -0.545   
+Nightmare                    0.165  -2.787  -2.502   -1.768  -2.969  -2.219   
+Nitrogen Isotopes            2.749   4.409   0.499    1.489   0.273   1.151   
+Nocxium                      0.816   1.951   0.992    2.034   0.507   1.531   
+Oxygen Isotopes              1.781   7.746  -1.872   -0.481  -1.647  -0.260   
+Praxis                       0.847  -0.585  -2.650   -1.772  -2.708  -1.859   
+Pyerite                      2.802     NaN   0.386    2.544   0.573   2.580   
+Rattlesnake                  0.303   2.618  -1.068   -0.261  -1.104  -0.263   
+Raven                       -3.176     NaN  -2.151   -1.732  -2.368  -1.899   
+Raven Navy Issue             1.088   2.816  -1.235   -0.515  -1.081  -0.367   
+Rokh                        -3.264  -0.570  -3.887   -2.993  -3.810  -2.854   
+Scorpion                    -0.105  -2.197  -2.829   -1.973  -2.705  -1.827   
+Scorpion Navy Issue          1.126  -0.984  -3.539   -2.267  -3.583  -2.147   
+Strontium Clathrates         3.437  13.202  -4.660   -2.316  -4.580  -1.989   
+Tempest                     -0.982  -3.346  -2.119   -1.566  -2.401  -1.827   
+Tempest Fleet Issue         -0.608   1.245  -2.820   -0.931  -3.191  -1.022   
+Thunderchild                -0.886  -4.202  -1.782   -1.265  -1.593  -0.954   
+Tritanium                   -0.418  -2.590  -1.402   -1.111  -1.275  -0.966   
+Typhoon                     -1.476  -3.182  -1.880   -1.564  -2.027  -1.739   
+Typhoon Fleet Issue          1.708   1.876  -2.813   -1.476  -2.746  -1.280   
+Vindicator                  -0.687   1.958  -1.660   -0.711  -1.813  -0.687   
+Zydrine                      1.102  11.405   0.766    2.729   1.063   2.639   
+
+strategy                      MACD     RSI     WMA  WMA+Vol  
+item                                                         
+Abaddon                     -7.139  -1.187  -3.713   -2.832  
+Apocalypse                  -6.911  -3.710  -4.900   -3.865  
+Apocalypse Navy Issue       -4.426   4.960  -3.974   -2.780  
+Armageddon                  -4.431  -1.067  -3.334   -2.836  
+Armageddon Navy Issue       -4.600  -0.847  -3.464   -2.531  
+Barghest                    -2.163   1.927  -1.606   -1.238  
+Bhaalgorn                   -2.044  10.669  -1.170    0.104  
+Chromodynamic Tricarboxyls -53.607  19.704 -48.686  -42.452  
+Dominix                     -1.779  -0.629  -2.167   -1.544  
+Dominix Navy Issue          -0.257  30.204  -2.939   -1.345  
+Eleutrium                      NaN  -6.558 -44.295  -42.054  
+Heavy Water                 -2.403 -21.961  -4.035   -1.222  
+Helium Isotopes              0.854   5.091   0.270    1.434  
+Hydrogen Isotopes           -1.511   1.714  -3.115   -1.922  
+Hyperion                    -3.592  -6.087  -2.214   -1.447  
+Isogen                      -3.249  -1.540  -1.746   -1.385  
+Leshak                      -3.730   2.259  -1.113   -0.623  
+Liquid Ozone               -15.591   2.668  -6.908    0.664  
+Machariel                   -3.545  -0.405  -1.291   -0.196  
+Maelstrom                   -6.390  -1.566  -4.226   -3.433  
+Megacyte                    -1.477   0.602  -1.451   -1.069  
+Megathron                   -6.968  -0.425  -2.747   -1.767  
+Megathron Navy Issue        -2.856   6.030  -2.613   -1.806  
+Mexallon                     0.675   0.378   3.027    2.423  
+Morphite                    -1.800  -0.461  -0.186    0.518  
+Neo-Jadarite               -68.579   4.383 -60.242  -56.548  
+Nestor                      -1.683   0.615  -1.259   -0.692  
+Nightmare                   -3.121   0.705  -2.455   -1.784  
+Nitrogen Isotopes            1.740   5.292   0.359    1.350  
+Nocxium                     -0.999  -0.657   0.367    1.173  
+Oxygen Isotopes              1.479  13.225  -1.406   -0.428  
+Praxis                      -2.020   0.364  -2.354   -1.671  
+Pyerite                     -0.145  12.543   0.081    1.654  
+Rattlesnake                 -2.334  12.142  -0.961   -0.220  
+Raven                       -2.759   1.230  -2.059   -1.612  
+Raven Navy Issue            -0.162   3.952  -1.138   -0.512  
+Rokh                        -4.756   1.743  -3.399   -2.499  
+Scorpion                    -1.550  -0.393  -2.366   -1.468  
+Scorpion Navy Issue         -5.214   0.088  -3.381   -2.072  
+Strontium Clathrates        -6.954 -10.277  -4.407   -2.319  
+Tempest                     -3.702  -1.370  -1.803   -1.276  
+Tempest Fleet Issue         -3.044  -0.875  -2.850   -0.986  
+Thunderchild                -2.742  -1.225  -1.467   -1.001  
+Tritanium                   -0.790   0.171  -1.066   -0.882  
+Typhoon                     -2.160  -0.336  -1.939   -1.619  
+Typhoon Fleet Issue         -3.345  -2.093  -2.774   -1.509  
+Vindicator                  -2.040   3.094  -1.387   -0.484  
+Zydrine                      1.590   2.774   0.108    1.625  
+
+============================================================
+Further scrutnity
+
+
+Robust (ROI > 5%, trades ≥ 30) strategies found: 12
+                              item strategy  ma_window  vol_window       roi  \
+159543  Chromodynamic Tricarboxyls      RSI          6           3  9.153481   
+159553  Chromodynamic Tricarboxyls      RSI          6          13  9.153481   
+159563  Chromodynamic Tricarboxyls      RSI          6          23  9.153481   
+159573  Chromodynamic Tricarboxyls      RSI          6          33  9.153481   
+159583  Chromodynamic Tricarboxyls      RSI          6          43  9.153481   
+159593  Chromodynamic Tricarboxyls      RSI          6          53  9.153481   
+162843                Neo-Jadarite      RSI          2           3  8.833483   
+162853                Neo-Jadarite      RSI          2          13  8.833483   
+162863                Neo-Jadarite      RSI          2          23  8.833483   
+162873                Neo-Jadarite      RSI          2          33  8.833483   
+162883                Neo-Jadarite      RSI          2          43  8.833483   
+162893                Neo-Jadarite      RSI          2          53  8.833483   
+
+          profit  trades  
+159543  81353.99      34  
+159553  81353.99      34  
+159563  81353.99      34  
+159573  81353.99      34  
+159583  81353.99      34  
+159593  81353.99      34  
+162843  18232.00      34  
+162853  18232.00      34  
+162863  18232.00      34  
+162873  18232.00      34  
+162883  18232.00      34  
+162893  18232.00      34
+
+Further analyses, RSI using de-coupled indicators...
+
+Robust (ROI > 0%, trades ≥ 30) strategies found: 170
+                item decoupled_from  window      roi       profit  trades
+             Pyerite        RSI+WMA       3 0.029978        17.82      30
+ Scorpion Navy Issue   RSI+BB_upper       2 0.025098 445528786.87      31
+Strontium Clathrates        RSI+WMA       3 0.024040      3206.00      32
+            Mexallon         RSI+MA       3 0.021812        61.12      30
+     Oxygen Isotopes        RSI+WMA       3 0.019911       453.10      31
+     Helium Isotopes        RSI+WMA       3 0.018527       511.00      31
+             Zydrine        RSI+WMA       3 0.016112      1027.00      31
+   Hydrogen Isotopes        RSI+EMA       2 0.015902       485.60      45
+             Pyerite        RSI+EMA       2 0.015395        12.18      41
+             Pyerite        RSI+WMA       2 0.015250        14.24      48
+             Pyerite            RSI       2 0.015250        14.24      48
+             Pyerite         RSI+MA       2 0.015250        14.24      48
+ Scorpion Navy Issue            RSI       2 0.013027 469688682.85      63
+ Scorpion Navy Issue         RSI+MA       2 0.013027 469688682.85      63
+ Scorpion Navy Issue        RSI+WMA       2 0.013027 469688682.85      63
+            Mexallon        RSI+WMA       3 0.012805        39.11      33
+  Dominix Navy Issue        RSI+WMA       3 0.011637 205198178.46      32
+            Megacyte   RSI+BB_lower       2 0.011542      1768.00      31
+            Megacyte       RSI+MACD       2 0.011542      1768.00      31
+ Scorpion Navy Issue         RSI+MA       3 0.011350 200555868.88      31
+ Typhoon Fleet Issue         RSI+MA       3 0.010906 192864981.14      32
+Strontium Clathrates            RSI       3 0.009942      1459.00      35
+     Oxygen Isotopes       RSI+MACD       2 0.009942       246.50      33
+     Oxygen Isotopes   RSI+BB_lower       2 0.009942       246.50      33
+ Tempest Fleet Issue            RSI       3 0.009798 176277332.48      35
+Strontium Clathrates         RSI+MA       2 0.009786      2080.00      51
+Strontium Clathrates        RSI+WMA       2 0.009786      2080.00      51
+Strontium Clathrates            RSI       2 0.009786      2080.00      51
+         Rattlesnake        RSI+WMA       3 0.009772 302386035.73      33
+   Nitrogen Isotopes        RSI+EMA       2 0.009596       294.30      41
+
+Saved to C:\Users\Jouke\Documents\evedata-logger\output\RSI_decoupled_results.csv
+Unique items scanned: 48
+Item names: ['Raven' 'Tempest' 'Scorpion' 'Megathron' 'Apocalypse' 'Armageddon'
+ 'Typhoon' 'Dominix' 'Raven Navy Issue' 'Apocalypse Navy Issue'
+ 'Megathron Navy Issue' 'Tempest Fleet Issue' 'Nightmare' 'Machariel'
+ 'Vindicator' 'Rattlesnake' 'Bhaalgorn' 'Rokh' 'Hyperion' 'Abaddon'
+ 'Maelstrom' 'Armageddon Navy Issue' 'Dominix Navy Issue'
+ 'Scorpion Navy Issue' 'Typhoon Fleet Issue' 'Nestor' 'Barghest' 'Leshak'
+ 'Praxis' 'Thunderchild' 'Heavy Water' 'Liquid Ozone' 'Helium Isotopes'
+ 'Strontium Clathrates' 'Oxygen Isotopes' 'Nitrogen Isotopes'
+ 'Hydrogen Isotopes' 'Tritanium' 'Pyerite' 'Mexallon' 'Isogen' 'Nocxium'
+ 'Zydrine' 'Megacyte' 'Morphite' 'Chromodynamic Tricarboxyls'
+ 'Neo-Jadarite' 'Eleutrium']
+
+ 
+
+1. Calculate Indicator Correlation Matrix

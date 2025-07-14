@@ -31,7 +31,7 @@ async def fetch_all_group_names(session):
     for gid in ids:
         group = await get_json(session, GROUP_DETAIL_URL.format(gid))
         group_names.append({'group_id': gid, 'group_name': group['name']})
-        await asyncio.sleep(0.05)  # Fast, just names
+        await asyncio.sleep(0.05)
     return pd.DataFrame(group_names)
 
 async def get_types_in_group(session, group_id):
@@ -78,47 +78,67 @@ async def main():
         groups_df = await fetch_all_group_names(session)
         all_names = sorted(groups_df['group_name'].unique())
 
-        # Prompt loop until valid and confirmed
         while True:
-            group_name = input("Enter EVE group name to fetch (e.g. Isotopes, Ice Products, Minerals): ").strip()
-            if group_name.startswith("'") and group_name.endswith("'"):
-                group_name = group_name[1:-1]
-            group_name = group_name.strip()
+            print("\nTip: Enter '?' to see all available group names.")
+            group_name = input("Enter EVE group name to fetch (e.g. Battleships, Minerals, Isotopes): ").strip()
+            if group_name == "?":
+                print("\nAll group names:")
+                for name in all_names:
+                    print("  -", name)
+                print()
+                continue
+
+            # Try exact match first
             found = groups_df[groups_df['group_name'].str.lower() == group_name.lower()]
             if not found.empty:
                 group_id = int(found.iloc[0]['group_id'])
-                print(f"Selected group: {group_name} (ID {group_id})")
-                print("Fetching type names in group (preview only)...")
-                items_df = await get_types_in_group(session, group_id)
-                print(f"{len(items_df)} items in group:")
-                # Print item names (up to 50 per screen, pause if needed)
-                N = len(items_df)
-                names = items_df['type_name'].tolist()
-                for i, name in enumerate(names, 1):
-                    print(f"  - {name}")
-                    if i % 50 == 0 and i < N:
-                        cont = input("Press Enter to see more, or 'q' to quit: ").strip().lower()
-                        if cont == 'q':
-                            break
-                confirm = input("Fetch history for these items? (y/n): ").strip().lower()
-                if confirm == 'y' or confirm == 'yes':
-                    break
-                else:
-                    print("Cancelled. Try a different group.")
+                group_real_name = found.iloc[0]['group_name']
+                print(f"Selected group: {group_real_name} (ID {group_id})")
             else:
-                # Show close matches
+                # Fuzzy match
                 matches = difflib.get_close_matches(group_name, all_names, n=5, cutoff=0.5)
-                print(f"Group '{group_name}' not found.")
                 if matches:
-                    print("Did you mean:", ", ".join(matches))
+                    print(f"\nGroup '{group_name}' not found.")
+                    print("Did you mean:")
+                    for i, match in enumerate(matches, 1):
+                        print(f"  {i}. {match}")
+                    choice = input(f"Select 1-{len(matches)} or 'n' to try again: ").strip()
+                    if choice.isdigit() and 1 <= int(choice) <= len(matches):
+                        match_name = matches[int(choice)-1]
+                        found = groups_df[groups_df['group_name'] == match_name]
+                        group_id = int(found.iloc[0]['group_id'])
+                        group_real_name = found.iloc[0]['group_name']
+                        print(f"Selected group: {group_real_name} (ID {group_id})")
+                    else:
+                        print("Try again.")
+                        continue
                 else:
-                    print("No similar group names found. Try again.")
+                    print(f"Group '{group_name}' not found and no close matches. Try again.")
+                    continue
+
+            print("Fetching type names in group (preview only)...")
+            items_df = await get_types_in_group(session, group_id)
+            print(f"{len(items_df)} items in group:")
+            # Print up to 50 items, then pause
+            N = len(items_df)
+            names = items_df['type_name'].tolist()
+            for i, name in enumerate(names, 1):
+                print(f"  - {name}")
+                if i % 50 == 0 and i < N:
+                    cont = input("Press Enter to see more, or 'q' to quit: ").strip().lower()
+                    if cont == 'q':
+                        break
+            confirm = input("Fetch history for these items? (y/n): ").strip().lower()
+            if confirm == 'y' or confirm == 'yes':
+                break
+            else:
+                print("Cancelled. Try a different group.")
 
         # Fetch market history for all types
-        print(f"Fetching {len(items_df)} market histories in group '{group_name}' ...")
+        print(f"Fetching {len(items_df)} market histories in group '{group_real_name}' ...")
         sem = asyncio.Semaphore(MAX_CONCURRENT)
         tasks = [
-            fetch_history_for_type(session, sem, row['type_id'], row['type_name'], group_id, group_name)
+            fetch_history_for_type(session, sem, row['type_id'], row['type_name'], group_id, group_real_name)
             for _, row in items_df.iterrows()
         ]
         chunks = await asyncio.gather(*tasks)
@@ -128,9 +148,8 @@ async def main():
             print("No market data found for this group.")
             return
         df = pd.DataFrame(records)
-        # Output file with finish time
         finished = datetime.now(timezone.utc).strftime("%Y-%m-%d_%H-%M")
-        safe_group_name = group_name.replace(' ', '_')
+        safe_group_name = group_real_name.replace(' ', '_')
         outpath = os.path.join(OUTPUT_DIR, f"market_history_{safe_group_name}_{finished}.csv")
         df.to_csv(outpath, index=False)
         print(f"Saved {len(df)} rows to {outpath}")
