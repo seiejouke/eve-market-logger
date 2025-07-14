@@ -1,0 +1,44 @@
+High-liquidity items (large, steady daily volume; small price swings)
+— Prefer slower/longer moving averages (e.g., 14, 21, 30 days…)
+
+Low-liquidity items (spiky, rare trades; big price jumps)
+— Prefer faster/shorter moving averages (e.g., 3, 5, 7 days…)
+
+Dangers: 
+
+Over-smoothing: Too long an MA “smooths out” real trends, making you react too slowly.
+Problem: Curve Fitting / Overfitting: Chasing the “perfect” window for past data can lead to picking settings that don’t work in the future.
+Solutions: Out-Of-Sample Validation, Rolling Optimization, "Robust" Parameters(correlated products).
+
+
+
+
+
+Example; Helium Isotopes 365-day history
+
+MA window: 7 days | Buy signals: 43 | Sell signals: 44
+Simulated trades: 43
+Total profit (ISK): -60.90
+Average profit per trade: -1.42
+
+MA window: 14 days | Buy signals: 33 | Sell signals: 34
+Simulated trades: 33
+Total profit (ISK): 16.50
+Average profit per trade: 0.50
+
+MA window: 21 days | Buy signals: 28 | Sell signals: 29
+Simulated trades: 28
+Total profit (ISK): 22.00
+Average profit per trade: 0.79
+
+MA window: 28 days | Buy signals: 21 | Sell signals: 22
+Simulated trades: 21
+Total profit (ISK): 77.50
+Average profit per trade: 3.69
+
+MA window: 35 days | Buy signals: 18 | Sell signals: 18
+Simulated trades: 17
+Total profit (ISK): -126.00
+Average profit per trade: -7.41
+
+

@@ -22,6 +22,8 @@ This project simulates the operations of an investment trader.
 - Automate and merge market data using the ESI API
 - Analyze trade performance, liquidity, and market behavior
 - Apply real data analyst practices in a game economy
+- Develop a basic trading strategy 
+   - Strategy 1: Scatterplot + Moving Average on High Liquiduity - Low volatility 
 
 ## Tech Stack
 
@@ -36,8 +38,8 @@ This project simulates the operations of an investment trader.
 ## Data Workflow
 
 1. Use Python scripts to query the ESI API  
-2. Analyze with Jupyter notebooks:  
-   - EDA - Features Engineering
+2. Analyze with Jupyter notebooks
+3. Export EDA's to BI for visual presentation
 
 ## Roadmap
 

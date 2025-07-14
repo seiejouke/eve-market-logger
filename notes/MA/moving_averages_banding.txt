@@ -1,0 +1,32 @@
+I think the MA band can't be haphazard, logically it should be relatively profitable on a certain range.
+If MA2 is bad MA3 good, and MA4 is bad, it's likely overfitting. 
+
+Train period best MA: 59 (ROI: 37.01%)
+Test  period best MA: 35 (ROI: 0.33%)
+
+Yep, its an overfit...
+
+
+Mexallon showing incremental clustering
+
+Item                         Net Profit (ISK)     Trades    Avg/Trade    Buy Capital    ROI (%)     Vol Exit
+--------------------------------------------------------------------------------------------------
+Mexallon                               23.91        41        0.58      3,659.23     0.65%        5.50
+--------------------------------------------------------------------------------------------------
+TOTAL                                   23.91        41        0.58      3,659.23     0.65%
+
+Top 10 MA Windows by ROI (per item, with volatility exit):
+
+Mexallon: (Volatility Exit Threshold: 5.50)
+  MA      Profit        Trades  Avg/Trade  Buy Capital     ROI (%)
+--------------------------------------------------------------
+  52         44.34         7        6.33        515.81       8.60%
+  51         44.34         7        6.33        515.81       8.60%
+  53         40.49         7        5.78        519.66       7.79%
+  60         45.41         8        5.68        605.07       7.50%
+  49         44.04         8        5.50        594.79       7.40%
+  55         40.56         8        5.07        599.92       6.76%
+  54         40.56         8        5.07        599.92       6.76%
+  59         43.58         9        4.84        685.67       6.36%
+  46         44.78        10        4.48        753.28       5.94%
+  56         40.20         9        4.47        679.38       5.92%
