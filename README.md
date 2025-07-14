@@ -37,11 +37,7 @@ This project simulates the operations of an investment trader.
 
 1. Use Python scripts to query the ESI API  
 2. Analyze with Jupyter notebooks:  
-   - Liquidity  
-   - Profit margins  
-   - ISK velocity  
-   - Inventory aging  
-   - Capital allocation
+   - EDA - Features Engineering
 
 ## Roadmap
 
