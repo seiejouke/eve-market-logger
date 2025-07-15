@@ -1,5 +1,4 @@
-![Market Overview 1](images/Market_Overview1.png)
-![Market Overview 2](images/Market_Overview2.png)
+
 
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/seiejouke/eve-market-logger/main.yml?branch=main)](https://github.com/seiejouke/eve-market-logger/actions)
@@ -40,8 +39,6 @@ This project simulates the operations of an investment trader.
 1. Use Python scripts to query the ESI API  
 2. Analyze with Jupyter notebooks
 3. Export EDA's to BI for visual presentation
-
-## Roadmap
 
 ## Roadmap
 
