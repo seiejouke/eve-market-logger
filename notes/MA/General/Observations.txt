@@ -606,5 +606,4 @@ Item names: ['Raven' 'Tempest' 'Scorpion' 'Megathron' 'Apocalypse' 'Armageddon'
  'Neo-Jadarite' 'Eleutrium']
 
  
-
-1. Calculate Indicator Correlation Matrix
+Sweeping 365 days history of items
