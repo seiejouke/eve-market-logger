@@ -607,3 +607,17 @@ Item names: ['Raven' 'Tempest' 'Scorpion' 'Megathron' 'Apocalypse' 'Armageddon'
 
  
 Sweeping 365 days history of items
+
+It appears EVE markets are highly "vulnerable" to RSI IS/OOS common grid searches
+
+source; C:\Users\Jouke\Documents\evedata-logger\output\signals_robust_RSI_gt5pct.csv
+
+
+Looking for RSI pairings to improve signal
+
+| RSI Period | Use Case                  | Suggested SMA Pairing              |
+| ---------- | ------------------------- | ---------------------------------- |
+| 2–5        | Scalping, short-term      | SMA(5), SMA(9), SMA(10)            |
+| 7–10       | Short swing, short trend  | SMA(10), SMA(14)                   |
+| 14         | Standard swing, mid trend | SMA(14), SMA(20), SMA(21), SMA(50) |
+

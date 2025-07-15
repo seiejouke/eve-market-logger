@@ -1,0 +1,194 @@
+Using RSI-2 20-40 buy/sell on Raven;
+
+Source: C:\Users\Jouke\Documents\evedata-logger\output\market_history_Battleship_2025-07-14_18-58.csv
+
+Number of trades: 12
+Average ROI per trade: ~1.99% (just under 2% per trade, before tax)
+
+shows potential
+
+
+Grid-sweep on the group (IS);
+
+| Item                  | Trades | Final Capital  | ROI (%) | Avg ROI per Trade (%) |
+| --------------------- | ------ | -------------- | ------- | --------------------- |
+| Apocalypse            | 44     | 13,369,729,617 | 1236.97 | 6.30                  |
+| Apocalypse Navy Issue | 40     | 5,907,231,418  | 490.72  | 4.62                  |
+| Maelstrom             | 41     | 5,296,660,251  | 429.67  | 4.48                  |
+| Scorpion Navy Issue   | 38     | 4,290,361,648  | 329.04  | 4.23                  |
+-------------------------------------------------------------------------------------<Tax Death>
+| Dominix Navy Issue    | 38     | 4,058,946,275  | 305.89  | 3.83                  |
+| Armageddon Navy Issue | 35     | 3,834,707,615  | 283.47  | 3.98                  |
+| Megathron Navy Issue  | 45     | 3,156,603,630  | 215.66  | 2.62                  |
+| Typhoon Fleet Issue   | 38     | 2,788,097,341  | 178.81  | 2.77                  |
+| Praxis                | 40     | 2,479,311,994  | 147.93  | 2.33                  |
+| Abaddon               | 36     | 2,290,574,789  | 129.06  | 2.56                  |
+| Armageddon            | 44     | 2,256,601,531  | 125.66  | 2.29                  |
+| Leshak                | 34     | 2,135,544,788  | 113.55  | 2.49                  |
+| Dominix               | 41     | 2,047,324,395  | 104.73  | 2.02                  |
+| Rattlesnake           | 41     | 1,960,496,887  | 96.05   | 2.06                  |
+| Nightmare             | 35     | 1,952,892,044  | 95.29   | 2.25                  |
+| Megathron             | 42     | 1,945,053,995  | 94.51   | 2.11                  |
+| Hyperion              | 35     | 1,828,537,341  | 82.85   | 2.12                  |
+| Machariel             | 41     | 1,814,344,309  | 81.43   | 2.00                  |
+| Raven Navy Issue      | 39     | 1,803,517,488  | 80.35   | 2.01                  |
+| Nestor                | 36     | 1,792,786,007  | 79.28   | 1.82                  |
+| Barghest              | 36     | 1,773,185,045  | 77.32   | 1.98                  |
+| Vindicator            | 37     | 1,738,830,464  | 73.88   | 1.83                  |
+| Thunderchild          | 32     | 1,733,663,246  | 73.37   | 1.92                  |
+| Tempest Fleet Issue   | 37     | 1,693,179,333  | 69.32   | 1.82                  |
+| Scorpion              | 39     | 1,675,917,679  | 67.59   | 1.81                  |
+| Tempest               | 38     | 1,669,151,211  | 66.92   | 1.81                  |
+| Rokh                  | 37     | 1,652,476,901  | 65.25   | 1.82                  |
+| Typhoon               | 36     | 1,647,818,067  | 64.78   | 1.87                  |
+| Bhaalgorn             | 31     | 1,613,379,629  | 61.34   | 1.91                  |
+| Raven                 | 12     | 1,220,906,722  | 22.09   | 1.99                  |
+
+RSI-2 20-40 Grid sweep on group IS-OOS:70-30
+
+| Item                  | Trades (OOS) | Final Capital | ROI (%) | Avg ROI per Trade (%) |
+| --------------------- | ------------ | ------------- | ------- | --------------------- |
+| Apocalypse Navy Issue | 12           | 1,853,177,016 | 85.32   | 5.38                  |
+| Dominix Navy Issue    | 11           | 1,813,430,567 | 81.34   | 5.72                  |
+| Machariel             | 11           | 1,636,320,778 | 63.63   | 5.49                  |
+| Maelstrom             | 13           | 1,605,885,978 | 60.59   | 3.86                  |
+| Armageddon            | 12           | 1,589,930,687 | 58.99   | 4.00                  |
+| Armageddon Navy Issue | 9            | 1,580,493,351 | 58.05   | 5.28                  |
+| Apocalypse            | 13           | 1,570,897,271 | 57.09   | 3.63                  |
+| Typhoon Fleet Issue   | 14           | 1,527,258,157 | 52.73   | 3.10                  |
+| Thunderchild          | 14           | 1,502,123,666 | 50.21   | 3.04                  |
+| Raven Navy Issue      | 11           | 1,406,657,297 | 40.67   | 3.17                  |
+| Nestor                | 11           | 1,398,415,094 | 39.84   | 3.49                  |
+| Megathron Navy Issue  | 14           | 1,391,192,285 | 39.12   | 3.46                  |
+| Dominix               | 13           | 1,390,773,179 | 39.08   | 3.26                  |
+| Barghest              | 9            | 1,377,315,070 | 37.73   | 2.94                  |
+| Leshak                | 12           | 1,353,166,482 | 35.32   | 2.81                  |
+| Nightmare             | 11           | 1,352,948,431 | 35.29   | 3.45                  |
+| Praxis                | 11           | 1,352,111,254 | 35.21   | 2.66                  |
+| Hyperion              | 10           | 1,349,759,024 | 34.98   | 3.47                  |
+| Typhoon               | 12           | 1,336,225,687 | 33.62   | 2.94                  |
+| Megathron             | 13           | 1,330,832,378 | 33.08   | 3.05                  |
+| Scorpion Navy Issue   | 13           | 1,329,825,261 | 32.98   | 3.22                  |
+| Scorpion              | 11           | 1,325,930,904 | 32.59   | 2.83                  |
+| Abaddon               | 10           | 1,324,574,326 | 32.46   | 2.89                  |
+| Vindicator            | 10           | 1,311,440,364 | 31.14   | 2.77                  |
+| Tempest               | 13           | 1,299,485,018 | 29.95   | 2.61                  |
+| Tempest Fleet Issue   | 11           | 1,294,401,441 | 29.44   | 2.69                  |
+| Bhaalgorn             | 8            | 1,288,252,479 | 28.83   | 3.14                  |
+| Rokh                  | 11           | 1,280,764,409 | 28.08   | 2.62                  |
+| Rattlesnake           | 12           | 1,272,214,405 | 27.22   | 2.65                  |
+| Raven                 | 4            | 1,145,983,376 | 14.60   | 2.61                  |
+
+Increasing uncertainty IS-OOS:30-70 RSI-2 20/40 signals
+
+| Item                  | Trades (OOS) | Final Capital | ROI (%) | Avg ROI per Trade (%) |
+| --------------------- | ------------ | ------------- | ------- | --------------------- |
+| Apocalypse            | 30           | 3,730,327,688 | 273.03  | 4.64                  |
+| Apocalypse Navy Issue | 27           | 3,055,130,485 | 205.51  | 4.31                  |
+| Dominix Navy Issue    | 27           | 2,847,801,822 | 184.78  | 4.04                  |
+| Armageddon Navy Issue | 22           | 2,425,103,060 | 142.51  | 4.20                  |
+| Maelstrom             | 27           | 2,365,793,270 | 136.58  | 3.70                  |
+| Megathron Navy Issue  | 30           | 2,092,602,849 | 109.26  | 2.53                  |
+| Machariel             | 25           | 1,981,591,826 | 98.16   | 3.20                  |
+| Armageddon            | 28           | 1,972,137,969 | 97.21   | 2.62                  |
+| Abaddon               | 28           | 1,929,407,993 | 92.94   | 2.63                  |
+| Typhoon Fleet Issue   | 27           | 1,924,268,903 | 92.43   | 2.48                  |
+| Scorpion Navy Issue   | 25           | 1,905,383,482 | 90.54   | 2.73                  |
+| Megathron             | 24           | 1,857,591,204 | 85.76   | 2.71                  |
+| Praxis                | 30           | 1,715,290,675 | 71.53   | 1.84                  |
+| Bhaalgorn             | 24           | 1,660,561,061 | 66.06   | 2.16                  |
+| Thunderchild          | 28           | 1,639,555,411 | 63.96   | 1.84                  |
+| Raven Navy Issue      | 24           | 1,598,375,245 | 59.84   | 2.00                  |
+| Barghest              | 28           | 1,512,337,176 | 51.23   | 1.51                  |
+| Scorpion              | 27           | 1,417,396,706 | 41.74   | 1.60                  |
+| Nightmare             | 25           | 1,409,176,630 | 40.92   | 1.43                  |
+| Hyperion              | 24           | 1,316,363,618 | 31.64   | 1.24                  |
+| Nestor                | 24           | 1,287,543,032 | 28.75   | 1.07                  |
+| Tempest Fleet Issue   | 21           | 1,286,548,704 | 28.65   | 1.30                  |
+| Vindicator            | 27           | 1,259,142,451 | 25.91   | 0.88                  |
+| Leshak                | 28           | 1,211,867,729 | 21.19   | 0.77                  |
+| Rattlesnake           | 20           | 1,158,613,575 | 15.86   | 0.76                  |
+| Dominix               | 25           | 1,074,494,307 | 7.45    | 0.49                  |
+| Typhoon               | 26           | 1,050,555,338 | 5.06    | 0.30                  |
+| Raven                 | 33           | 1,044,025,270 | 4.40    | 0.30                  |
+| Tempest               | 20           | 865,139,249   | -13.49  | -0.62                 |
+| Rokh                  | 22           | 863,437,751   | -13.66  | -0.44                 |
+
+Thin but robust
+
+| **Item**              | **IS Avg ROI/Trade (%)** | **OOS70-30 (%)** | **OOS30-70 (%)** | **Robustness Verdict** |
+| --------------------- | ------------------------ | ---------------- | ---------------- | ---------------------- |
+| Apocalypse            | 6.3                      | 5.38             | 4.64             | **Very robust**        |
+| Apocalypse Navy Issue | 4.62                     | 5.72             | 4.31             | **Robust**             |
+| Dominix Navy Issue    | 3.83                     | 5.72             | 4.04             | **Robust**             |
+| Maelstrom             | 4.48                     | 3.86             | 3.7              | **Robust**             |
+| Raven                 | 1.99                     | 2.61             | 0.3              | **Unrobust (avoid)**   |
+| Tempest/Rokh/etc.     | <2.5                     | <3               | ≤0               | **Unrobust/Fail**      |
+
+Buy Order (Setting Up):
+Broker Fee: 0.5%
+Sell Order (Completion):
+Broker Fee: 0.5%
+Transaction Tax: 3.37%
+Total Cost Per Round-Trip Trade:
+Buy: 0.5%
+Sell: 0.5% + 3.37% = 3.87%
+
+Total: 4.37% per trade (before slippage/spread)
+
+
+OOS:30-70 (High OOS Uncertainty)
+
+| Item                  | Trades | Avg ROI/Trade (%) | **Net Avg ROI/Trade (%)** | **Net Total ROI (%)** | Verdict   |
+| --------------------- | ------ | ----------------- | ------------------------- | --------------------- | --------- |
+| Apocalypse            | 30     | 4.64              | 0.27                      | 8                     | Marginal  |
+| Apocalypse Navy Issue | 27     | 4.31              | -0.06                     | -2                    | Not worth |
+| Dominix Navy Issue    | 27     | 4.04              | -0.33                     | -9                    | Not worth |
+| Armageddon Navy Issue | 22     | 4.20              | -0.17                     | -4                    | Not worth |
+| Maelstrom             | 27     | 3.70              | -0.67                     | -18                   | Not worth |
+| Megathron Navy Issue  | 30     | 2.53              | -1.84                     | -55                   | Not worth |
+| Machariel             | 25     | 3.20              | -1.17                     | -29                   | Not worth |
+| Armageddon            | 28     | 2.62              | -1.75                     | -49                   | Not worth |
+| Abaddon               | 28     | 2.63              | -1.74                     | -49                   | Not worth |
+| Typhoon Fleet Issue   | 27     | 2.48              | -1.89                     | -51                   | Not worth |
+| Scorpion Navy Issue   | 25     | 2.73              | -1.64                     | -41                   | Not worth |
+| Megathron             | 24     | 2.71              | -1.66                     | -40                   | Not worth |
+| Praxis                | 30     | 1.84              | -2.53                     | -76                   | Not worth |
+| Bhaalgorn             | 24     | 2.16              | -2.21                     | -53                   | Not worth |
+| Thunderchild          | 28     | 1.84              | -2.53                     | -71                   | Not worth |
+| Raven Navy Issue      | 24     | 2.00              | -2.37                     | -57                   | Not worth |
+| Barghest              | 28     | 1.51              | -2.86                     | -80                   | Not worth |
+| Scorpion              | 27     | 1.60              | -2.77                     | -75                   | Not worth |
+| Nightmare             | 25     | 1.43              | -2.94                     | -73                   | Not worth |
+| Hyperion              | 24     | 1.24              | -3.13                     | -75                   | Not worth |
+| Nestor                | 24     | 1.07              | -3.30                     | -79                   | Not worth |
+| Tempest Fleet Issue   | 21     | 1.30              | -3.07                     | -64                   | Not worth |
+| Vindicator            | 27     | 0.88              | -3.49                     | -94                   | Not worth |
+| Leshak                | 28     | 0.77              | -3.60                     | -101                  | Not worth |
+| Rattlesnake           | 20     | 0.76              | -3.61                     | -72                   | Not worth |
+| Dominix               | 25     | 0.49              | -3.88                     | -97                   | Not worth |
+| Typhoon               | 26     | 0.30              | -4.07                     | -106                  | Not worth |
+| Raven                 | 33     | 0.30              | -4.07                     | -134                  | Not worth |
+| Tempest               | 20     | -0.62             | -4.99                     | -100                  | Not worth |
+| Rokh                  | 22     | -0.44             | -4.81                     | -106                  | Not worth |
+
+
+We want more volatility.
+
+Ice-Products bare worse results.
+
+| Item                   | Sample     | Trades | Net ISK | Avg ROI/Trade (%) |
+| ---------------------- | ---------- | ------ | ------- | ----------------- |
+| **Heavy Water**        | IS         | 82     | -151.59 | -2.80             |
+|                        | OOS 70-30  | 0      | 0.00    | 0.00              |
+|                        | OOS 30-70  | 36     | -97.81  | -4.06             |
+| **All other products** | All splits | 0      | 0.00    | 0.00              |
+
+Only Heavy Water triggered any trades—but these trades were all net losers, with each trade averaging a ~3% loss after costs.
+
+Let's find Volatile items specifically before our strategy. these items are simply not volatile enough for this trading strategy
+
+Filtering by top 1000 ISK flow 
+
+Source: C:\Users\Jouke\Documents\evedata-logger\output\rsi2_strategy_IS_top1000_iskflow.csv
+
