@@ -1,4 +1,6 @@
 [core]
-    remote = localremote
+    remote = gdrive_remote
 ['remote "localremote"']
     url = C:\Users\Jouke\Documents\dvc-storage
+['remote "gdrive_remote"']
+    url = gdrive://root/evedata-dvc
