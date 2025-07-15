@@ -22,7 +22,7 @@ This project simulates the operations of an investment trader.
 - Analyze trade performance, liquidity, and market behavior
 - Apply real data analyst practices in a game economy
 - Develop a basic trading strategy 
-   - RSI-2, OOS full grid sweep
+   - RSI-2, IS/OOS 20:40 signals 
 
 ## Tech Stack
 
