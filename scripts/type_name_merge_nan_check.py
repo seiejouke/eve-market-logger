@@ -6,3 +6,4 @@ missing_names = merged_df[merged_df['type_name'].isnull()]
 
 print(f"Number of missing type_name values: {len(missing_names)}")
 
+

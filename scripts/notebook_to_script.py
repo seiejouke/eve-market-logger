@@ -167,7 +167,7 @@ and out-of-sample (validation phase).
 
 The goal is to identify robust RSI settings that maximize return on investment (ROI) while maintaining
 consistent performance outside the training period. This analysis aids in tuning the trading algorithm
-to adapt effectively to EVE Online’s dynamic market conditions.
+to adapt effectively to EVE Onlineâ€™s dynamic market conditions.
 
 ---
 
@@ -210,7 +210,7 @@ story = pynarrative.Story(df_top20, height=chart_height)
 
 story = story.add_title(
     "Compare ROI by Strategy",
-    subtitle="Each strategy’s moving average and volume windows shown. Hover bars to see profit and trades."
+    subtitle="Each strategyâ€™s moving average and volume windows shown. Hover bars to see profit and trades."
 )
 
 story = story.mark_bar(size=20).encode(
@@ -232,12 +232,12 @@ story = story.mark_bar(size=20).encode(
 story = story.add_source("Source: MA_EMA_RV_roi_results.csv")
 
 # Display warning and context above chart using Markdown
-display(Markdown("⚠️ **Note:** These trades are likely not robust and may be overfitted to historical data."))
+display(Markdown("âš ï¸ **Note:** These trades are likely not robust and may be overfitted to historical data."))
 
 display(Markdown("This chart compares ROI for the top 20 trading strategies with at least 10 trades."))
 
 # Display chart heading and chart
-display(Markdown("## Trading Strategy ROI Overview (Top 20, ≥10 Trades)"))
+display(Markdown("## Trading Strategy ROI Overview (Top 20, â‰¥10 Trades)"))
 display(story.render())
 
 
@@ -419,6 +419,7 @@ display(story.render())
 
 # Add source info below
 display(Markdown("_Source: robust_OOS_strategies_top.csv_"))
+
 
 
 

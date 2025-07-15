@@ -129,7 +129,7 @@ html_parts.append(md_to_html("""
 
 This dataset represents a comprehensive grid sweep exploring various RSI parameter combinations, including different window sizes (`win`), buy thresholds (`buy_th`), and sell thresholds (`sell_th`). Each parameter combination was backtested to evaluate its profitability both in-sample (training phase) and out-of-sample (validation phase).
 
-The goal is to identify robust RSI settings that maximize return on investment (ROI) while maintaining consistent performance outside the training period. This analysis aids in tuning the trading algorithm to adapt effectively to EVE Online’s dynamic market conditions.
+The goal is to identify robust RSI settings that maximize return on investment (ROI) while maintaining consistent performance outside the training period. This analysis aids in tuning the trading algorithm to adapt effectively to EVE Onlineâ€™s dynamic market conditions.
 
 ---
 """))
@@ -148,7 +148,7 @@ chart_height = 30 * len(df_top20)
 story = pynarrative.Story(df_top20, height=chart_height)
 story = story.add_title(
     "Compare ROI by Strategy",
-    subtitle="Each strategy’s moving average and volume windows shown. Hover bars to see profit and trades."
+    subtitle="Each strategyâ€™s moving average and volume windows shown. Hover bars to see profit and trades."
 )
 story = story.mark_bar(size=20).encode(
     y=alt.Y('strategy_label:N', sort='-x', title='Strategy and Window Sizes',
@@ -166,7 +166,7 @@ story = story.mark_bar(size=20).encode(
     ]
 )
 story = story.add_source("Source: MA_EMA_RV_roi_results.csv")
-html_parts.append(md_to_html("## Trading Strategy ROI Overview (Top 20, ≥10 Trades)"))
+html_parts.append(md_to_html("## Trading Strategy ROI Overview (Top 20, â‰¥10 Trades)"))
 html_parts.append(unique_chart_html(story.chart, chart_idx)); chart_idx += 1
 
 # --- 6. Market History Example (Raven) ---
@@ -205,3 +205,4 @@ with open(output_html, "w", encoding="utf-8") as f:
     f.write(full_html)
 
 print(f"\nReport saved to: {output_html}\n")
+

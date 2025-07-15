@@ -41,7 +41,7 @@ all_type_ids.extend(first_page_ids)
 total_pages = int(resp.headers.get("x-pages", 1))
 print(f"ESI reports {total_pages} pages of results; each up to 1000 IDs.")
 
-# Fetch pages 2…N
+# Fetch pages 2â€¦N
 for page in range(2, total_pages + 1):
     resp = requests.get(type_ids_url, params={"page": page})
     resp.raise_for_status()
@@ -49,7 +49,7 @@ for page in range(2, total_pages + 1):
     if not batch_ids:
         break
     all_type_ids.extend(batch_ids)
-    print(f"  • fetched page {page}/{total_pages} ({len(batch_ids)} IDs)")
+    print(f"  â€¢ fetched page {page}/{total_pages} ({len(batch_ids)} IDs)")
     time.sleep(0.2)  # small pause so you don't spike the API
 
 print(f"Total type_ids gathered: {len(all_type_ids)}")
@@ -76,7 +76,7 @@ for i in range(0, len(all_type_ids), batch_size):
 
         conn.commit()
         inserted += len(data)
-        print(f"Processed batch {i // batch_size + 1} — total inserted: {inserted}")
+        print(f"Processed batch {i // batch_size + 1} â€” total inserted: {inserted}")
         time.sleep(1)
 
     except Exception as e:

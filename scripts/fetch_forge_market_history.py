@@ -6,7 +6,7 @@ import time
 import os
 from datetime import datetime, timezone  # <-- Fixed import
 
-# ─── Configuration ─────────────────────────────────────────────
+# â”€â”€â”€ Configuration â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 REGION_ID        = 10000002  # The Forge
 MAX_CONCURRENT   = 5
 DELAY            = 1.2       # seconds between requests per worker
@@ -18,7 +18,7 @@ CANONICAL_CSV    = 'output/market_data.csv'
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 os.makedirs('output', exist_ok=True)  # Ensure output/ always exists
 
-# ─── Async Fetcher ─────────────────────────────────────────────
+# â”€â”€â”€ Async Fetcher â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async def fetch_history(session, semaphore, type_id):
     url     = f"https://esi.evetech.net/latest/markets/{REGION_ID}/history/?type_id={type_id}"
     headers = {'User-Agent': 'eve-market-history-pipeline'}
@@ -51,28 +51,28 @@ async def backfill(type_ids):
     records = [r for chunk in chunks for r in chunk]
     return pd.DataFrame(records)
 
-# ─── Helpers ───────────────────────────────────────────────────
+# â”€â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 def load_type_ids(path):
     df = pd.read_csv(path)
     return df['type_id'].astype(int).tolist()
 
-# ─── Main ──────────────────────────────────────────────────────
+# â”€â”€â”€ Main â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 def main():
     start = time.time()
 
     # Load item IDs
     type_ids = load_type_ids(INPUT_TYPE_IDS)
-    print(f"→ Loaded {len(type_ids)} type IDs from {INPUT_TYPE_IDS}")
+    print(f"â†’ Loaded {len(type_ids)} type IDs from {INPUT_TYPE_IDS}")
 
     # Fetch HISTORY_DAYS days of history for all items
-    print(f"→ Fetching {HISTORY_DAYS}-day history for region {REGION_ID} with {MAX_CONCURRENT} workers…")
+    print(f"â†’ Fetching {HISTORY_DAYS}-day history for region {REGION_ID} with {MAX_CONCURRENT} workersâ€¦")
     df = asyncio.run(backfill(type_ids))
 
     # Write snapshot
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")  # <-- Fixed line
     snapshot = os.path.join(OUTPUT_DIR, f"update_{today}.csv")
     df.to_csv(snapshot, index=False)
-    print(f"→ Saved snapshot ({len(df)} rows) to {snapshot}")
+    print(f"â†’ Saved snapshot ({len(df)} rows) to {snapshot}")
 
     # --- Merge with canonical backlog ---
     if os.path.exists(CANONICAL_CSV):
@@ -90,3 +90,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

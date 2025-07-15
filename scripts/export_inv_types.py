@@ -13,4 +13,5 @@ df = pd.read_sql("SELECT type_id, type_name FROM inv_types ORDER BY type_id;", e
 # --- Save to CSV ---
 output_csv = "output/inv_types.csv"
 df.to_csv(output_csv, index=False)
-print(f"✅ Exported {len(df)} rows to {output_csv}")
+print(f"âœ… Exported {len(df)} rows to {output_csv}")
+

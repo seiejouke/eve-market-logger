@@ -17,3 +17,4 @@ merged_df = market_df.merge(type_map[['type_id', 'type_name']], on='type_id', ho
 
 
 merged_df.to_csv('output/update_2025-07-13.csv', index=False)
+

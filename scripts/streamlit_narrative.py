@@ -134,11 +134,11 @@ and out-of-sample (validation phase).
 
 The goal is to identify robust RSI settings that maximize return on investment (ROI) while maintaining
 consistent performance outside the training period. This analysis aids in tuning the trading algorithm
-to adapt effectively to EVE Online’s dynamic market conditions.
+to adapt effectively to EVE Onlineâ€™s dynamic market conditions.
 """)
 
 # ---- 5. Trading Strategy ROI Overview ----
-st.header("Trading Strategy ROI Overview (Top 20, ≥10 Trades)")
+st.header("Trading Strategy ROI Overview (Top 20, â‰¥10 Trades)")
 
 csv_path3 = r"C:\Users\Jouke\Documents\evedata-logger\output\MA_EMA_RV_roi_results.csv"
 df3 = pd.read_csv(csv_path3)
@@ -153,7 +153,7 @@ chart_height = 30 * len(df3_top20)
 story3 = pynarrative.Story(df3_top20, height=chart_height)
 story3 = story3.add_title(
     "Compare ROI by Strategy",
-    subtitle="Each strategy’s moving average and volume windows shown. Hover bars to see profit and trades."
+    subtitle="Each strategyâ€™s moving average and volume windows shown. Hover bars to see profit and trades."
 )
 story3 = story3.mark_bar(size=20).encode(
     y=alt.Y('strategy_label:N', sort='-x', title='Strategy and Window Sizes',
@@ -172,7 +172,7 @@ story3 = story3.mark_bar(size=20).encode(
 )
 story3 = story3.add_source("Source: MA_EMA_RV_roi_results.csv")
 
-st.warning("⚠️ These trades are likely not robust and may be overfitted to historical data.")
+st.warning("âš ï¸ These trades are likely not robust and may be overfitted to historical data.")
 st.markdown("This chart compares ROI for the top 20 trading strategies with at least 10 trades.")
 st.altair_chart(story3.chart, use_container_width=True)
 
@@ -277,3 +277,4 @@ st.caption("_Source: robust_OOS_strategies_top.csv_")
 
 # ---- End ----
 st.info("All charts and analysis are generated automatically from your project CSVs. Scroll up and down to explore, and hover over charts for more details!")
+

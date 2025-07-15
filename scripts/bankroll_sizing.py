@@ -49,3 +49,4 @@ def bankroll_sizing(
         'avg_daily_volume', 'isk_volume_daily', 'days_to_fill_min', 'days_to_fill_max'
     ]
     return filtered[cols_to_show]
+

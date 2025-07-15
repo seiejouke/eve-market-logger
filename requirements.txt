@@ -1,5 +1,11 @@
-﻿certifi==2025.6.15
-charset-normalizer==3.4.2
-idna==3.10
-requests==2.32.4
-urllib3==2.5.0
+aiohttp==3.12.13
+altair==5.5.0
+ipython==9.3.0
+Markdown==3.8.2
+pandas==2.3.1
+psycopg2==2.9.10
+psycopg2_binary==2.9.10
+pynarrative==0.3
+Requests==2.32.4
+SQLAlchemy==2.0.41
+streamlit==1.46.1
