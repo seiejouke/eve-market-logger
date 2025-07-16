@@ -1,3 +1,7 @@
+# Minimal direct requirements for eve-market-logger
+# Generated with pipreqs
+
+
 aiohttp==3.12.14
 altair==5.5.0
 ipython==8.12.3
