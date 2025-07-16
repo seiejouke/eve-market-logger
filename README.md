@@ -1,3 +1,9 @@
+## Data Visualizations
+
+![Visualization 1](images/visualization.png)
+![Visualization 2](images/visualization2.png)
+![Visualization 3](images/visualization3.png)
+![Visualization 4](images/visualization4.png)
 
 
 
