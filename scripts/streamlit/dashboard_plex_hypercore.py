@@ -7,48 +7,52 @@ st.title("EVE Online Market Dashboard: PLEX & Hypercores")
 
 st.markdown("""
 **Instructions:**
-- Please upload your PLEX and Hypercore CSV files below.
-- If you need sample files, see the [GitHub repo](https://github.com/your-github/eve-market-logger).
+- **Option 1:** Upload your own PLEX and Hypercore CSV files.
+- **Option 2:** Click 'Load Sample Data' to instantly demo the dashboard (uses Google Drive CSVs).
+- [See GitHub for details and sample data.](https://github.com/your-github/eve-market-logger)
 """)
 
-# --- File uploaders (NO DEFAULTS) ---
+# Google Drive direct download links (public sample data)
+SAMPLE_PLEX = "https://drive.google.com/uc?id=1T7ZUuFya7GIFzPXtr8eBrDCfwlEMxKKA&export=download"
+SAMPLE_HYPER = "https://drive.google.com/uc?id=1CunDPFiCqmhcfV_WunK0tdUcGRQpSpl0&export=download"
+
+# File uploaders (sidebar)
+st.sidebar.header("Load Data")
 plex_file = st.sidebar.file_uploader("Upload PLEX CSV", type="csv", key="plex")
 hypercore_file = st.sidebar.file_uploader("Upload Hypercore CSV", type="csv", key="hypercore")
+use_sample = st.sidebar.button("Load Sample Data (Google Drive)")
 
-# --- Require upload of BOTH files ---
-if not plex_file or not hypercore_file:
-    st.warning("Please upload both PLEX and Hypercore CSV files to begin.")
+# Data source decision logic
+if use_sample:
+    df_plex = pd.read_csv(SAMPLE_PLEX)
+    df_hypercore = pd.read_csv(SAMPLE_HYPER)
+    st.success("Loaded sample data from Google Drive!")
+elif plex_file and hypercore_file:
+    df_plex = pd.read_csv(plex_file)
+    df_hypercore = pd.read_csv(hypercore_file)
+else:
+    st.warning("Upload both CSVs in the sidebar OR click 'Load Sample Data' to begin.")
     st.stop()
 
-@st.cache_data
-def load_data(file):
-    return pd.read_csv(file)
-
-df_plex = load_data(plex_file)
-df_hypercore = load_data(hypercore_file)
-
-# --- Merge and drop NaN ---
+# --- Data merge and cleaning ---
 df = pd.merge(
     df_plex, df_hypercore,
     on='date',
     suffixes=('_plex', '_hypercore')
 ).sort_values('date').reset_index(drop=True)
-
 n_before = len(df)
 df = df.dropna().reset_index(drop=True)
 n_after = len(df)
 dropped = n_before - n_after
-
 st.success(f"Merged {len(df)} days of data. Dropped {dropped} rows with missing values.")
 
-# --- Column selectors ---
+# --- Column selection ---
 plex_cols = [col for col in df.columns if col.endswith('_plex')]
 hypercore_cols = [col for col in df.columns if col.endswith('_hypercore')]
-
 price_col_plex = st.sidebar.selectbox("PLEX column", plex_cols, index=plex_cols.index('average_plex') if 'average_plex' in plex_cols else 0)
 price_col_hyper = st.sidebar.selectbox("Hypercore column", hypercore_cols, index=hypercore_cols.index('average_hypercore') if 'average_hypercore' in hypercore_cols else 0)
 
-# --- Stats and correlations ---
+# --- Correlation and stats ---
 st.subheader("Summary Statistics & Correlation")
 c1, c2 = st.columns(2)
 with c1:
@@ -57,7 +61,6 @@ with c1:
 with c2:
     st.markdown(f"**Hypercore ({price_col_hyper}):**")
     st.write(df[price_col_hyper].describe())
-
 pearson = df[price_col_plex].corr(df[price_col_hyper])
 spearman = df[price_col_plex].corr(df[price_col_hyper], method='spearman')
 kendall = df[price_col_plex].corr(df[price_col_hyper], method='kendall')
@@ -71,11 +74,10 @@ st.info(f"""
 # --- Rolling correlation ---
 window = st.sidebar.slider("Rolling window (days)", min_value=7, max_value=60, value=30)
 rolling_corr = df[price_col_plex].rolling(window).corr(df[price_col_hyper])
-
-# --- Plots ---
-st.subheader("Visualizations")
 df['date'] = pd.to_datetime(df['date'])
 
+# --- Visualizations ---
+st.subheader("Visualizations")
 tab1, tab2, tab3 = st.tabs(["Time Series", "Scatter Plot", "Rolling Correlation"])
 
 with tab1:
@@ -108,6 +110,5 @@ with tab3:
     fig.subplots_adjust(bottom=0.25)
     st.pyplot(fig)
 
-# --- Data preview ---
 if st.checkbox("Show merged data sample"):
     st.dataframe(df.head(30))
