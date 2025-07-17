@@ -33,7 +33,8 @@ This project simulates the operations of an investment trader.
 ## Post-Objective Discoveries
 
 - Full single-asset grid-sweeps aren't as effective as multi-asset correlation strategies
-   - Fitting behaviour to a narrative seems a better abstract tool for finding trends
+   - Fitting behaviour to a narrative seems a better abstract tool for finding trends 
+      -Streamlit: https://eve-market.streamlit.app/
 
 
 ## Tech Stack
@@ -50,7 +51,7 @@ This project simulates the operations of an investment trader.
 
 1. Use Python scripts to query the ESI API  
 2. Analyze with Jupyter notebooks
-3. Export EDA's to BI for visual presentation
+3. Export EDA's to Streamlit for visual presentation
 
 ## Roadmap
 
