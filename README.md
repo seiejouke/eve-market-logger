@@ -30,6 +30,12 @@ This project simulates the operations of an investment trader.
 - Develop a basic trading strategy 
    - RSI-2, IS/OOS 20:40 signals 
 
+## Post-Objective Discoveries
+
+- Full single-asset grid-sweeps aren't as effective as multi-asset correlation strategies
+   - Fitting behaviour to a narrative seems a better abstract tool for finding trends
+
+
 ## Tech Stack
 
 - Python 3.12  
